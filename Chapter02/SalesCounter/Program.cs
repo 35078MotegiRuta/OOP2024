@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 namespace SalesCounter {
     internal class Program {
         static void Main(string[] args) {
-            SalesCounter sales = new SalesCounter("data\\sales.csv");
-            Dictionary<string, int> amountPerStore = (Dictionary<string, int>)sales.GetPerStoreSales();
-            foreach (KeyValuePair<string, int> obj in amountPerStore) {
+
+            var sales = new SalesCounter("data\\sales.csv");
+            var amountPerStore = sales.GetPerStoreSales();
+            foreach (var obj in amountPerStore) {
                 Console.WriteLine("{0}{1}", obj.Key, obj.Value);
             }
         }
