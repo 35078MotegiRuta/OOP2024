@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace SalesCounter {
     public class SalesCounter {
         private List<Sale> _sales;
-
         //コンストラクタ
         public SalesCounter(List<Sale> sales) {
             _sales = sales;
