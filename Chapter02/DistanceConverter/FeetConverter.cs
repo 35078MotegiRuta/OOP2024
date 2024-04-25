@@ -18,6 +18,5 @@ namespace DistanceConverter {
         public static double FeetMeter(double feet) {
             return feet * ratio;
         }    
-
     }
 }
