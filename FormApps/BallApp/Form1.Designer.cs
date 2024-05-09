@@ -36,11 +36,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Aqua;
+            BackColor = Color.PaleTurquoise;
             ClientSize = new Size(784, 561);
             Name = "Form1";
             Text = "BallApp";
             Load += Form1_Load;
+            KeyDown += Form1_KeyDown;
             MouseClick += Form1_MouseClick;
             ResumeLayout(false);
         }

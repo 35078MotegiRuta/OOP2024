@@ -14,8 +14,6 @@ namespace BallApp {
         public SoccerBall(double xp, double yp)
             : base(xp, yp, @"Picture\soccer_ball.png") {
 
-
-
             MoveX = rand.Next(-15, 15);  //移動量設定
             MoveY = rand.Next(-15, 15); 
             Count++;
@@ -38,6 +36,10 @@ namespace BallApp {
             PosY += MoveY;
 
        
+            return true;
+        }
+
+        public override bool Move(Keys direction) {
             return true;
         }
     }
