@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace BallApp {
     internal class TennisBall : Obj {
+        public static int Count { get; set; }
+        Random rand = new Random();
 
         public TennisBall(double xp, double yp)
             : base(xp, yp, @"Picture\tennis_ball.png") {
 
-            MoveX = 10; //移動量設定
-            MoveY = 10;
+            MoveX = rand.Next(-15,15); //移動量設定
+            MoveY = rand.Next(-15,15);
+            Count++;
         }
 
         public override bool Move() {
@@ -29,6 +32,7 @@ namespace BallApp {
 
             PosX += MoveX;
             PosY += MoveY;
+
 
             return true;
         }
