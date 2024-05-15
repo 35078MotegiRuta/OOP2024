@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+            var list = new List<string> {
+                "Tokyo",
+                "New Delhi",
+                "Bangkok",
+                "London",
+                "Paris",
+                "Berlin",
+                "Canberra",
+                "Hong Kong",
+            };
 
-            //int count = numbers.Count(n => n % 2 == 0);
-            double num = numbers.Where(n => n > 5).Average();
-            int total = numbers.Where(n => n > 5).Sum();
-            Console.WriteLine(num);
-            Console.WriteLine(total);
+            var removeCount = list.RemoveAll(s => s.Contains("on"));
+            Console.WriteLine(removeCount);
+
+            list.ForEach(s => Console.WriteLine(s));
         }
-
-
     }
 }
