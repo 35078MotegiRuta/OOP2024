@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            var list = new List<string> {
+            var names = new List<string> {
                 "Tokyo",
                 "New Delhi",
                 "Bangkok",
@@ -19,8 +19,11 @@ namespace Section01 {
                 "Hong Kong",
             };
 
-            var UpperList = list.ConvertAll(s => s.ToUpper());
-            UpperList.ForEach(s => Console.WriteLine(s));   
+            IEnumerable<string> query = names.Where(s => s.Contains(" "))
+                                             .Select(s => s.ToUpper());
+            foreach(string s in query) {
+                Console.WriteLine(s);
+            }
         }
     }
 }
