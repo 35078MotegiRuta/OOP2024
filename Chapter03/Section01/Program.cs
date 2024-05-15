@@ -19,10 +19,8 @@ namespace Section01 {
                 "Hong Kong",
             };
 
-            var removeCount = list.RemoveAll(s => s.Contains("on"));
-            Console.WriteLine(removeCount);
-
-            list.ForEach(s => Console.WriteLine(s));
+            var UpperList = list.ConvertAll(s => s.ToUpper());
+            UpperList.ForEach(s => Console.WriteLine(s));   
         }
     }
 }
