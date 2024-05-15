@@ -40,7 +40,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(List<int> numbers) {
-
+            var query = numbers.Select(s => s *2).ToList();
+            foreach (var x in query) Console.WriteLine(x);
         }
     }
 }
