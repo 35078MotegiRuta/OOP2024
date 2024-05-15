@@ -9,33 +9,11 @@ namespace Section01 {
         static void Main(string[] args) {
             var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
 
-            //Judgement judge = IsEven;
-            //Judgement judge = IsNotEven;
-            Judgement judge = IsNotOver;
-
-            int count = Count(numbers, judge);
+            var count = Count(numbers, n => n % 2 == 0);
             Console.WriteLine(count);
         }
 
-        //nが偶数かどうかを調べる
-        public static bool IsEven(int n) {
-            return n % 2 == 0; //偶数だとtureが返却される
-        }
-
-        //nが奇数かどうかを調べる
-        public static bool IsNotEven(int n) {
-            return n % 2 == 1; //奇数だとtureが返却される
-        }
-
-        //７より大きいかどうかを調べる
-        public static bool IsNotOver(int n) {
-            return 7 < n;
-        }
-
-
-        public delegate bool Judgement(int value);//デリゲートの宣言
-
-        public static int Count(int[] numbers, Judgement judge) {
+        public static int Count(int[] numbers, Predicate<int> judge) {
             
             int count = 0;
             foreach (var n in numbers) {
