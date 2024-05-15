@@ -10,7 +10,8 @@ namespace Section01 {
             var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
 
             //Judgement judge = IsEven;
-            Judgement judge = IsNotEven;
+            //Judgement judge = IsNotEven;
+            Judgement judge = IsNotOver;
 
             int count = Count(numbers, judge);
             Console.WriteLine(count);
@@ -21,9 +22,14 @@ namespace Section01 {
             return n % 2 == 0; //偶数だとtureが返却される
         }
 
-        //nが偶数かどうかを調べる
+        //nが奇数かどうかを調べる
         public static bool IsNotEven(int n) {
-            return n % 2 == 1; //偶数だとtureが返却される
+            return n % 2 == 1; //奇数だとtureが返却される
+        }
+
+        //７より大きいかどうかを調べる
+        public static bool IsNotOver(int n) {
+            return 7 < n;
         }
 
 
