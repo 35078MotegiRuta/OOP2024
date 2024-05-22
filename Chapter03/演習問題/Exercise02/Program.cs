@@ -39,24 +39,24 @@ namespace Exercise02 {
                     int index = names.FindIndex(x => x == line);
                     Console.WriteLine(index);
                 }
-            }while (true);
+            } while (true);
         }
 
         private static void Exercise2_2(List<string> names) {
             var count = names.Count(x => x.Contains("o"));
-            Console.WriteLine(count); 
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<string> names) {
             var selected = names.Where(x => x.Contains("o")).ToArray();
-            foreach(var name in selected)
+            foreach (var name in selected)
                 Console.WriteLine(name);
         }
 
         private static void Exercise2_4(List<string> names) {
-            var strings = names.Where(s => s.StartsWith("B")).Select(s => s.Length);
-            foreach(var name in strings)
-                Console.WriteLine(name);
+            var selected = names.Where(s => s.StartsWith("B")).Select(s => new { s.Length, s });
+            foreach (var obj in selected)
+                Console.WriteLine(obj.s + "," + obj.Length);
         }
     }
 }
