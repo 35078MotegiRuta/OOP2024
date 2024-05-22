@@ -48,8 +48,9 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_3(List<string> names) {
-            names.Where(x => x.Contains("o")).
-                ToList().ForEach(x => Console.WriteLine(x));
+            var selected = names.Where(x => x.Contains("o")).ToArray();
+            foreach(var name in selected)
+                Console.WriteLine(name);
         }
 
         private static void Exercise2_4(List<string> names) {
