@@ -54,9 +54,9 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
-            var strings = names.Where(s => s.StartsWith("B")).Select(s => s.ToString());
+            var strings = names.Where(s => s.StartsWith("B")).Select(s => s.Length);
             foreach(var name in strings)
-                Console.WriteLine(name+','+name.Length);
+                Console.WriteLine(name);
         }
     }
 }
