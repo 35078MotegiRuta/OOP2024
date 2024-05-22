@@ -43,7 +43,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<string> names) {
-
+            var count = names.Count(x => x.Contains("o"));
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<string> names) {
