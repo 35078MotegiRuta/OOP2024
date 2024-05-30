@@ -25,7 +25,13 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(string text) {
-
+            int count = 0;
+            foreach (char c in text) {
+                if (c == ' ') {
+                    count++;
+                }
+            }
+            Console.WriteLine("空白文字:"+count);
         }
 
         private static void Exercise3_2(string text) {
