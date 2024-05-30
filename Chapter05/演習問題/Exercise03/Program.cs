@@ -50,8 +50,9 @@ namespace Exercise03 {
             var str = text.Split(' ').ToArray();
             StringBuilder sb = new StringBuilder();
             foreach (var w in str) {
-                Console.Write(w+' ');
+                sb.Append(w).Append(' ');
             }
+            Console.Write(sb);
         }
     }
 }
