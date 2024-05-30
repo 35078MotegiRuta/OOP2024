@@ -42,12 +42,16 @@ namespace Exercise03 {
         private static void Exercise3_4(string text) {
             var str = text.Split(' ').Where(w => w.Length <= 4);
             foreach(var w in str) {
-                Console.WriteLine("{0}",w); 
+                Console.WriteLine(w); 
             }
         }
 
         private static void Exercise3_5(string text) {
-
+            var str = text.Split(' ').ToArray();
+            StringBuilder sb = new StringBuilder();
+            foreach (var w in str) {
+                Console.Write(w+' ');
+            }
         }
     }
 }
