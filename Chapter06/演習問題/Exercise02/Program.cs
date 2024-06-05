@@ -27,7 +27,6 @@ namespace Exercise02 {
             Console.WriteLine("-----");
 
             Exercise2_2(books);
-
             Console.WriteLine("-----");
 
             Exercise2_3(books);
@@ -54,12 +53,13 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<Book> books) {
-            var selected = books.Count(x => x.Title.Contains("C#"));
-            Console.WriteLine(selected);
+            var count = books.Count(x => x.Title.Contains("C#"));
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<Book> books) {
-
+            var average = books.Where(x => x.Title.Contains("C#")).Average(b => b.Pages);
+            Console.WriteLine(average);
         }
 
         private static void Exercise2_4(List<Book> books) {
