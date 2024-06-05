@@ -9,13 +9,28 @@ namespace Exercise04 {
         static void Main(string[] args) {
             var line = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
 
+            string[] parts = line.Split(';');
 
+            foreach (var part in parts) {
+                string[] keyValue = part.Split('=');
+                string key = keyValue[0];
+                string value = keyValue[1];
+                Console.WriteLine(ToJapanese(key)+":"+ value);
+            }
         }
 
-        //できたら以下のメソッドを完成させて利用する
-        //static string ToJapanese(string key) {
+        static string ToJapanese(string key) {
+            switch (key) {
+                case "Novelist":
+                    return "作家";
 
+                case "BestWork":
+                    return "代表作";
 
-        //}
+                case "Born":
+                    return "誕生年";
+            }
+            throw new ArgumentException("引数に誤りがあります。");
+        }
     }
 }

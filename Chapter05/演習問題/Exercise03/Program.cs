@@ -23,6 +23,9 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
+            Console.WriteLine("-----");
+
+            Exercise3_6(text2);
         }
 
         private static void Exercise3_1(string text) {
@@ -55,6 +58,8 @@ namespace Exercise03 {
             }
             Console.Write(sb);
         }
+
+
         //private static void Exercise3_5(string text) {
         //    var array = text.Split(' ').ToArray();
 
@@ -66,8 +71,8 @@ namespace Exercise03 {
         //    Console.Write(sb);
         //}
 
-        private static void Exercise3_6(string text) {
-            var array = text.Split(new[] {' ',',','-','_'}).ToArray();
+        private static void Exercise3_6(string text2) {
+            var array = text2.Split(new[] {' ',',','-','_'}).ToArray();
             foreach (var w in array) {
                 Console.WriteLine(w);
             }
