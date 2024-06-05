@@ -14,7 +14,7 @@ namespace Exercise04 {
                 Console.WriteLine("{0}:{1}", ToJapanese(array[0]), array[1]);
             }
         }
-
+        　
         static string ToJapanese(string key) {
             switch (key) {
                 case "Novelist":
