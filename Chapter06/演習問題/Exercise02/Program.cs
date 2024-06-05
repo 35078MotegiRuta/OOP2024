@@ -69,7 +69,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_5(List<Book> books) {
-
+            var pages = books.Where(b => b.Price < 4000).Max(b => b.Pages);
+            Console.WriteLine(pages);
         }
 
         private static void Exercise2_6(List<Book> books) {
