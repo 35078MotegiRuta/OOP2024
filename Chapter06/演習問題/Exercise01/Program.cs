@@ -44,11 +44,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(int[] numbers) {
-            throw new NotImplementedException();
+            foreach (var num in numbers.OrderBy(n => n).Take(3))
+            Console.WriteLine(num);
         }
 
         private static void Exercise1_5(int[] numbers) {
-            throw new NotImplementedException();
+            var count = numbers.Distinct().Count(n => n > 10);
+            Console.WriteLine(count);
         }
     }
 }
