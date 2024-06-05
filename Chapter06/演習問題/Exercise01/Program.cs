@@ -37,7 +37,10 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(int[] numbers) {
-            throw new NotImplementedException();
+            var str = numbers.Select(n => n.ToString());
+            foreach(var numStr in str) {
+                Console.WriteLine(numStr); 
+            }
         }
 
         private static void Exercise1_4(int[] numbers) {
