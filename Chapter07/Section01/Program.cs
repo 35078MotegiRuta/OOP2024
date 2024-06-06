@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,27 +8,21 @@ using System.Threading.Tasks;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            var employeeDict = new Dictionary<int, Employee> {
-               { 100, new Employee(100, "清水遼久") },
-               { 112, new Employee(112, "芹沢洋和") },
-               { 125, new Employee(125, "岩瀬奈央子") },
-            };
+            Console.WriteLine("県庁所在地の登録");
+            var kenchou = new Dictionary<string, string>();
 
-            employeeDict.Add(126, new Employee(126, "庄野遥花"));
+            for (int i = 0; i < 5; i++) {
+                Console.WriteLine($"{i+1}件目");
+                Console.Write("都道府県:");
+                string key = Console.ReadLine();
+                Console.Write("県庁所在地: ");
+                string value = Console.ReadLine();
 
-            foreach (var item in employeeDict.Values) {
-                Console.WriteLine($"{item.Id} {item.Name}");
+                kenchou[key] = value;
             }
-
-            //var flowerDict = new Dictionary<string, int>() {
-            //    { "sunflower", 400 },
-            //    { "pansy", 300 },
-            //    { "tulip", 350 },
-            //    { "rose", 500 },
-            //    { "dahlia", 450 },
-            //};
-            //Console.WriteLine(flowerDict["sunflower"]);
-            //Console.WriteLine(flowerDict["dahlia"]);
+            foreach (var x in kenchou) {
+                Console.WriteLine($"{x.Key}の県庁所在地は{x.Value}です");
+            }
         }
     }
 }
