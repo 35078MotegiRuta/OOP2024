@@ -80,7 +80,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_7(List<Book> books) {
-
+            var book = books.Where(x => x.Title.Contains("C#") && x.Pages <= 500);
+            foreach (var b in book) {
+                Console.WriteLine(b.Title);
+            }
         }
     }
 }
