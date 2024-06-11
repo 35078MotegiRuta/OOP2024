@@ -11,14 +11,26 @@ namespace Section01 {
             Console.WriteLine("県庁所在地の登録");
             var kenchou = new Dictionary<string, string>();
 
-            for (int i = 0; i < 5; i++) {
-                Console.WriteLine($"{i + 1}件目");
+            int count = 1;
+            while (count <= 5) {
                 Console.Write("都道府県:");
                 string key = Console.ReadLine();
                 Console.Write("県庁所在地: ");
                 string value = Console.ReadLine();
 
-                kenchou[key] = value;
+                if (kenchou.ContainsKey(key)) {
+                    Console.Write("既に登録されています　上書きしますか?yes/no:");
+                    string x = Console.ReadLine();
+
+                    if (x == "yes") {
+                        kenchou[key] = value;
+                    } else if (x == "no") {
+                        Console.WriteLine("登録しませんでした");
+                    }
+                } else {
+                    kenchou[key] = value;
+                    count++;
+                }
             }
 
             int input;
@@ -40,7 +52,13 @@ namespace Section01 {
                         break;
 
                     case 2:
-
+                        Console.Write("都道府県:");
+                        string searchKey = Console.ReadLine();
+                        if (kenchou.ContainsKey(searchKey)) {
+                            Console.WriteLine($"{searchKey}の県庁所在地は{kenchou[searchKey]}です");
+                        } else {
+                            Console.WriteLine($"{searchKey}は登録されていません");
+                        }
                         break;
 
                     case 9:
