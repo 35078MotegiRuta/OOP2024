@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,16 +8,21 @@ using System.Threading.Tasks;
 
 namespace Section01 {
     internal class Program {
-        static void Main(string[] args) {
-            Console.WriteLine("県庁所在地の登録");
-            var kenchou = new Dictionary<string, string>();
+        static private Dictionary<string, string> kenchou = new Dictionary<string, string>();
 
-            int count = 0;
-            while (count < 5) {
+        static void Main(string[] args) {
+            string key, value;
+
+            Console.WriteLine("県庁所在地の登録");
+
+            while (true) {
                 Console.Write("都道府県:");
-                string key = Console.ReadLine();
+                key = Console.ReadLine();
+                if (key == null)
+                    break;
+
                 Console.Write("県庁所在地: ");
-                string value = Console.ReadLine();
+                value = Console.ReadLine();
 
                 if (kenchou.ContainsKey(key)) {
                     Console.Write("既に登録されています　上書きしますか?(Y/N):");
@@ -25,35 +31,20 @@ namespace Section01 {
                     }
                 }
                 kenchou[key] = value;
-                count++;
             }
 
             int input;
 
             do {
-                Console.WriteLine("*メニュー*");
-                Console.WriteLine("1: 一覧表示");
-                Console.WriteLine("2: 検索");
-                Console.WriteLine("9: 終了");
-                Console.WriteLine("----------- ");
-
-                int.TryParse(Console.ReadLine(), out input);
+                input = Menu();
 
                 switch (input) {
                     case 1:
-                        foreach (var ken in kenchou) {
-                            Console.WriteLine($"{ken.Key}の県庁所在地は{ken.Value}です");
-                        }
+                        AllKenchou();
                         break;
 
                     case 2:
-                        Console.Write("都道府県:");
-                        string searchKey = Console.ReadLine();
-                        if (kenchou.ContainsKey(searchKey)) {
-                            Console.WriteLine($"{searchKey}の県庁所在地は{kenchou[searchKey]}です");
-                        } else {
-                            Console.WriteLine($"{searchKey}は登録されていません");
-                        }
+                        SearchKen();
                         break;
 
                     case 9:
@@ -65,6 +56,35 @@ namespace Section01 {
                         break;
                 }
             } while (input != 9);
+        }
+
+        private static int Menu() {
+            int input;
+            Console.WriteLine("*メニュー*");
+            Console.WriteLine("1: 一覧表示");
+            Console.WriteLine("2: 検索");
+            Console.WriteLine("9: 終了");
+            Console.WriteLine("----------- ");
+
+            int.TryParse(Console.ReadLine(), out input);
+            return input;
+        }
+
+
+        private static void AllKenchou() {
+            foreach (var ken in kenchou) {
+                Console.WriteLine($"{ken.Key}の県庁所在地は{ken.Value}です");
+            }
+        }
+        
+        private static void SearchKen() {
+            Console.Write("都道府県:");
+            string searchKey = Console.ReadLine();
+            if (kenchou.ContainsKey(searchKey)) {
+                Console.WriteLine($"{searchKey}の県庁所在地は{kenchou[searchKey]}です");
+            } else {
+                Console.WriteLine($"{searchKey}は登録されていません");
+            }
         }
     }
 }
