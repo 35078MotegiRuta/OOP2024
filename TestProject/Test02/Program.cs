@@ -103,7 +103,6 @@ namespace Test02 {
         private static void Exercise06(List<Person> persons) {
             var average = persons.Where(x => x.Height >= 170).Average(x => x.Weight);
             Console.WriteLine(average);
-
         }
 
         //問題７　体重70Kg以下の人を全て表示（名前と体重）
@@ -111,20 +110,18 @@ namespace Test02 {
         //　　　　　　　　　沖田宏一 59kg
         //　　　　　　　　　片山伸介 65kg】
         private static void Exercise07(List<Person> persons) {
-            var pages = persons.Where(x => x.Weight <= 70);
-            foreach (var page in pages)
-                Console.WriteLine("{0} {1}", page.Name, page.Weight);
-
-
+            var weight = persons.Where(x => x.Weight <= 70);
+            foreach (var x in weight)
+                Console.WriteLine("{0} {1}", x.Name, x.Weight);
         }
 
         //問題８　名前に「山」の漢字が含まれている人全て表示
         //　　　　出力結果【山田隆司
         //　　　　　　　　　片山伸介】
         private static void Exercise08(List<Person> persons) {
-            var book = persons.Where(x => x.Name.Contains("山"));
-            foreach (var b in book) {
-                Console.WriteLine(b.Name);
+            var name = persons.Where(x => x.Name.Contains("山"));
+            foreach (var x in name) {
+                Console.WriteLine(x.Name);
             }
         }
     }
