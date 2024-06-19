@@ -21,13 +21,19 @@ namespace Section04 {
             Console.WriteLine();
 
             //7.2.3(Removeの呼び出し)
-            if (abbrs.Remove("IOC"))
+            if (abbrs.Remove("NPT"))
                 Console.WriteLine(abbrs.count);
 
-            if (abbrs.Remove("IOC"))
+            if (abbrs.Remove("NPT"))
                 Console.WriteLine(abbrs.count);
             else
                 Console.WriteLine("削除できません");
+            Console.WriteLine();
+
+            //7.2.4
+            var addreviation = abbrs.Where(x => x.Key.Length == 3);
+            foreach (var addr in addreviation)
+                Console.WriteLine(addr.Key+"="+addr.Value);
             Console.WriteLine();
 
 
