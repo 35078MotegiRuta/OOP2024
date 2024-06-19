@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,23 @@ namespace Section04 {
             // Addメソッドの呼び出し例
             abbrs.Add("IOC", "国際オリンピック委員会");
             abbrs.Add("NPT", "核兵器不拡散条約");
+
+            //7.2.3(Countの呼び出し)
+            //上のメソッドで、二つのオブジェクトを追加しているので、読み込んだ
+            Console.WriteLine(abbrs.count);
+            Console.WriteLine();
+
+            //7.2.3(Removeの呼び出し)
+            if (abbrs.Remove("IOC"))
+                Console.WriteLine(abbrs.count);
+
+            if (abbrs.Remove("IOC"))
+                Console.WriteLine(abbrs.count);
+            else
+                Console.WriteLine("削除できません");
+            Console.WriteLine();
+
+
 
             // インデクサの利用例
             var names = new[] { "WHO", "FIFA", "NPT", };
