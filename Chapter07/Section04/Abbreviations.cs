@@ -20,7 +20,9 @@ namespace Section04 {
         }
 
         //7.2.2(Removeメソッドの作成)
-        
+        public bool Remove(string add) {
+            return _dict.Remove(add);
+        }
 
         // コンストラクタ
         public Abbreviations() {
