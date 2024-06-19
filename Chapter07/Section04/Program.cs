@@ -31,9 +31,9 @@ namespace Section04 {
             Console.WriteLine();
 
             //7.2.4
-            var addreviation = abbrs.Where(x => x.Key.Length == 3);
-            foreach (var addr in addreviation)
-                Console.WriteLine(addr.Key+"="+addr.Value);
+            foreach (var addr in abbrs.Where(x => x.Key.Length == 3)) {
+                Console.WriteLine(addr.Key + "=" + addr.Value);
+            }
             Console.WriteLine();
 
 
