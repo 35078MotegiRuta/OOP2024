@@ -91,6 +91,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter08", "Chapter08", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section01", "Chapter08\Section01\Section01.csproj", "{AEC1F229-7DCB-4C71-BAEC-1057C8819008}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeApp", "FormApps\DateTimeApp\DateTimeApp.csproj", "{6E768A85-CDC6-467D-A06D-08B2D951BA88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,6 +207,10 @@ Global
 		{AEC1F229-7DCB-4C71-BAEC-1057C8819008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEC1F229-7DCB-4C71-BAEC-1057C8819008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEC1F229-7DCB-4C71-BAEC-1057C8819008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E768A85-CDC6-467D-A06D-08B2D951BA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E768A85-CDC6-467D-A06D-08B2D951BA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E768A85-CDC6-467D-A06D-08B2D951BA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E768A85-CDC6-467D-A06D-08B2D951BA88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +250,7 @@ Global
 		{30A1B22F-EA42-403A-9AC8-1AC9AA043D39} = {ED107189-306A-46AF-96C2-8CAD3EA7C51B}
 		{5FA7927E-9D06-4396-89F3-4BF43FE3C97A} = {ED107189-306A-46AF-96C2-8CAD3EA7C51B}
 		{AEC1F229-7DCB-4C71-BAEC-1057C8819008} = {E584DA91-EDEE-42C7-B3CF-5937430A046F}
+		{6E768A85-CDC6-467D-A06D-08B2D951BA88} = {2B4A5A41-1CEB-4C57-95D1-FCC62EC85B81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FCC3273-1334-4C14-B610-8C47D2DE6AE7}
