@@ -30,7 +30,8 @@ namespace Section01 {
 
             //生まれてから何日か
             DateTime nowDate = DateTime.Now;
-            Console.WriteLine($"あなたは生まれてから{(int)(nowDate-birthday).TotalDays+1}日目です。");
+            TimeSpan diff = nowDate - birthday;
+            Console.WriteLine($"あなたは生まれてから{diff.Days+1}日目です。");
         }
     }
 }
