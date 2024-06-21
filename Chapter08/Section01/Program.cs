@@ -19,13 +19,18 @@ namespace Section01 {
             Console.Write("日:");
             int day = int.Parse(Console.ReadLine());
 
-            DateTime date = new DateTime(year, month, day);
+            DateTime birthday = new DateTime(year, month, day);
 
             var culture = new CultureInfo("ja-JP");
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            var str = date.ToString("ggyy年M月d日",culture);
+            var str = birthday.ToString("ggyy年M月d日",culture);
 
-            Console.WriteLine($"あなたは{str}{date.ToString("dddd")}に生まれました");
+            //和暦で表示
+            Console.WriteLine($"あなたは{str}{birthday.ToString("dddd")}に生まれました");
+
+            //生まれてから何日か
+            DateTime nowDate = DateTime.Now;
+            Console.WriteLine($"あなたは生まれてから{(int)(nowDate-birthday).TotalDays}日目です。");
         }
     }
 }
