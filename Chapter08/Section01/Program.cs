@@ -7,26 +7,19 @@ using System.Threading.Tasks;
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            DateTime birthday = new DateTime(2004, 5, 4);
-            Console.WriteLine(birthday.ToString("dddd"));
+            Console.WriteLine("生年月日を入力");
 
-            //    var dt1 = new DateTime(2024, 6, 19);
-            //    var dt2 = new DateTime(2004, 5, 4, 8, 45, 20);
-            //    Console.WriteLine(dt1);
-            //    Console.WriteLine(dt2);
+            Console.Write("年:");
+            int year = int.Parse(Console.ReadLine());
 
-            //    var today = DateTime.Today;
-            //    var now = DateTime.Now;
-            //    Console.WriteLine("Today:{0}", today);
-            //    Console.WriteLine("Now:{0}", now);
+            Console.Write("月:");
+            int month = int.Parse(Console.ReadLine());
 
-            //    var isLeapYear = DateTime.IsLeapYear(2024);
-            //    if (isLeapYear) {
-            //        Console.WriteLine("うるう年です");
-            //    } else {
-            //        Console.WriteLine("うるう年ではないです");
-            //    }
-            //}
+            Console.Write("日:");
+            int day = int.Parse(Console.ReadLine());
+
+            DateTime date = new DateTime(year, month, day);
+            Console.WriteLine($"あなたは{date.ToString("dddd")}に生まれました");
         }
     }
 }
