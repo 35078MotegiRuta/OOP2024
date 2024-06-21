@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,12 @@ namespace Section01 {
             int day = int.Parse(Console.ReadLine());
 
             DateTime date = new DateTime(year, month, day);
-            Console.WriteLine($"あなたは{date.ToString("dddd")}に生まれました");
+
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var str = date.ToString("ggyy年M月d日",culture);
+
+            Console.WriteLine($"あなたは{str}{date.ToString("dddd")}に生まれました");
         }
     }
 }
