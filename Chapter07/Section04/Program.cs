@@ -16,7 +16,7 @@ namespace Section04 {
             abbrs.Add("NPT", "核兵器不拡散条約");
 
             //7.2.3(Countの呼び出し)
-            //上のメソッドで、二つのオブジェクトを追加しているので、読み込んだ
+            //上のメソッドで、二つのオブジェクトを追加しているので、読み込んだ単語数+2が、Countの値になる
             Console.WriteLine(abbrs.count);
             Console.WriteLine();
 
