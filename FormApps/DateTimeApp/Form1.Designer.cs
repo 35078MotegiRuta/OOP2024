@@ -30,6 +30,7 @@
             nudDay = new NumericUpDown();
             btDayAfter = new Button();
             btDaybe = new Button();
+            tbAge = new Button();
             ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
@@ -44,12 +45,12 @@
             label1.TabIndex = 0;
             label1.Text = "日付";
             // 
-            // dtpBirthday
+            // dtpDate
             // 
             dtpDate.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
             dtpDate.Location = new Point(254, 94);
             dtpDate.Margin = new Padding(6);
-            dtpDate.Name = "dtpBirthday";
+            dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(364, 39);
             dtpDate.TabIndex = 1;
             // 
@@ -104,11 +105,23 @@
             btDaybe.UseVisualStyleBackColor = true;
             btDaybe.Click += btDaybe_Click;
             // 
+            // tbAge
+            // 
+            tbAge.Location = new Point(511, 284);
+            tbAge.Margin = new Padding(6);
+            tbAge.Name = "tbAge";
+            tbAge.Size = new Size(132, 46);
+            tbAge.TabIndex = 8;
+            tbAge.Text = "年齢";
+            tbAge.UseVisualStyleBackColor = true;
+            tbAge.Click += tbAge_Click;
+            // 
             // btDayBefore
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(757, 470);
+            Controls.Add(tbAge);
             Controls.Add(btDaybe);
             Controls.Add(btDayAfter);
             Controls.Add(nudDay);
@@ -134,5 +147,6 @@
         private NumericUpDown nudDay;
         private Button btDayAfter;
         private Button btDaybe;
+        private Button tbAge;
     }
 }
