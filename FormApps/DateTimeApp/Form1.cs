@@ -1,19 +1,29 @@
 namespace DateTimeApp {
-    public partial class Form1 : Form {
-        public Form1() {
+    public partial class btDayBefore : Form {
+        public btDayBefore() {
             InitializeComponent();
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e) {
-
         }
 
         private void btDateCount_Click(object sender, EventArgs e) {
 
-            DateTime nowDate = DateTime.Now;
+            DateTime nowDate = DateTime.Today;
             TimeSpan diff = nowDate - dtpBirthday.Value;
 
-            tbDisp.Text =( $"{diff.Days + 1}“ú–Ú");
+            tbDisp.Text = ($"{diff.Days + 1}“ú–Ú");
+        }
+
+        private void btDaybe_Click(object sender, EventArgs e) {
+            DateTime nowDate = DateTime.Today;
+            var before = nowDate.AddDays(-(double)nudDay.Value);
+
+            tbDisp.Text = before.ToString();
+        }
+
+        private void btDayAfter_Click(object sender, EventArgs e) {
+            DateTime nowDate = DateTime.Today;
+            var before = nowDate.AddDays((double)nudDay.Value);
+
+            tbDisp.Text = before.ToString();
         }
     }
 }
