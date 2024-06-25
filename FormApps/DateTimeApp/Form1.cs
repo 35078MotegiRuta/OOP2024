@@ -7,21 +7,19 @@ namespace DateTimeApp {
         private void btDateCount_Click(object sender, EventArgs e) {
 
             DateTime nowDate = DateTime.Today;
-            TimeSpan diff = nowDate - dtpBirthday.Value;
+            TimeSpan diff = nowDate - dtpDate.Value;
 
             tbDisp.Text = ($"{diff.Days + 1}“ú–Ú");
         }
 
         private void btDaybe_Click(object sender, EventArgs e) {
-            DateTime nowDate = DateTime.Today;
-            var before = nowDate.AddDays(-(double)nudDay.Value);
+            var before = dtpDate.Value.AddDays(-(double)nudDay.Value);
 
             tbDisp.Text = before.ToString();
         }
 
         private void btDayAfter_Click(object sender, EventArgs e) {
-            DateTime nowDate = DateTime.Today;
-            var before = nowDate.AddDays((double)nudDay.Value);
+            var before = dtpDate.Value.AddDays((double)nudDay.Value);
 
             tbDisp.Text = before.ToString();
         }

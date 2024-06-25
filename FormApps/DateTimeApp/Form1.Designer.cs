@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             label1 = new Label();
-            dtpBirthday = new DateTimePicker();
+            dtpDate = new DateTimePicker();
             btDateCount = new Button();
             tbDisp = new TextBox();
             nudDay = new NumericUpDown();
@@ -46,12 +46,12 @@
             // 
             // dtpBirthday
             // 
-            dtpBirthday.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpBirthday.Location = new Point(254, 94);
-            dtpBirthday.Margin = new Padding(6);
-            dtpBirthday.Name = "dtpBirthday";
-            dtpBirthday.Size = new Size(364, 39);
-            dtpBirthday.TabIndex = 1;
+            dtpDate.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            dtpDate.Location = new Point(254, 94);
+            dtpDate.Margin = new Padding(6);
+            dtpDate.Name = "dtpBirthday";
+            dtpDate.Size = new Size(364, 39);
+            dtpDate.TabIndex = 1;
             // 
             // btDateCount
             // 
@@ -114,7 +114,7 @@
             Controls.Add(nudDay);
             Controls.Add(tbDisp);
             Controls.Add(btDateCount);
-            Controls.Add(dtpBirthday);
+            Controls.Add(dtpDate);
             Controls.Add(label1);
             Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
             Margin = new Padding(6);
@@ -128,7 +128,7 @@
         #endregion
 
         private Label label1;
-        private DateTimePicker dtpBirthday;
+        private DateTimePicker dtpDate;
         private Button btDateCount;
         private TextBox tbDisp;
         private NumericUpDown nudDay;
