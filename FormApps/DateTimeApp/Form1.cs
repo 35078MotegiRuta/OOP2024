@@ -27,6 +27,9 @@ namespace DateTimeApp {
         private void tbAge_Click(object sender, EventArgs e) {
             var today = DateTime.Today;
             int age = today.Year - dtpDate.Value.Year;
+            if (today < dtpDate.Value.AddYears(age).AddDays(-1)) {
+                age--;
+            }
 
             tbDisp.Text = age.ToString();
         }
