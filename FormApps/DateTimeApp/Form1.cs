@@ -15,13 +15,13 @@ namespace DateTimeApp {
         private void btDaybe_Click(object sender, EventArgs e) {
             var before = dtpDate.Value.AddDays(-(double)nudDay.Value);
 
-            tbDisp.Text = before.ToString();
+            tbDisp.Text = before.ToString("D");
         }
 
         private void btDayAfter_Click(object sender, EventArgs e) {
             var before = dtpDate.Value.AddDays((double)nudDay.Value);
 
-            tbDisp.Text = before.ToString();
+            tbDisp.Text = before.ToString("D");
         }
     }
 }
