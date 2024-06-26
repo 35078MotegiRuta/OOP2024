@@ -1,4 +1,9 @@
+using Microsoft.VisualBasic;
+using System;
 using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Exercise01 {
     public partial class Form1 : Form {
@@ -12,7 +17,24 @@ namespace Exercise01 {
             tbDisp.Text += today.ToString("yyyy”NMMŒdd“ú HHmm•ªss•b") + "\r\n";
             var culture = new CultureInfo("ja-JP");
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            tbDisp.Text += today.ToString("ggyy”NMŒd“ú (dddd)",culture);
+            tbDisp.Text += today.ToString("ggyy”NMŒd“ú (dddd)", culture) + "\r\n";
+        }
+
+        private void btEx8_2_Click(object sender, EventArgs e) {
+            DateTime date = DateTime.Today;
+            foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek))) {
+                DateTime nextDay = NextDay(date, dayOfWeek);
+                var str = string.Format("{0:yy/MM/dd}‚ÌŸT‚Ì{1}:{2:yy/MM/dd}", date,dayOfWeek,nextDay);
+                tbDisp.Text += str + "\r\n";
+            }
+        }
+
+        public static DateTime NextDay(DateTime date, DayOfWeek dayOfWeek) {
+            var days = (int)dayOfWeek - (int)date.DayOfWeek;
+            if (days <= 0) {
+                days += 7;
+            }
+            return date.AddDays(days);
         }
     }
 }
