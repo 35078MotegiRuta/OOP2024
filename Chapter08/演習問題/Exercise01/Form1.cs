@@ -23,17 +23,15 @@ namespace Exercise01 {
         private void btEx8_2_Click(object sender, EventArgs e) {
             DateTime date = DateTime.Today;
             foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek))) {
-                DateTime nextDay = NextDay(date, dayOfWeek);
-                var str = string.Format("{0:yy/MM/dd}ÇÃéüèTÇÃ{1}:{2:yy/MM/dd}", date,dayOfWeek,nextDay);
-                tbDisp.Text += str + "\r\n";
+                var str1 = string.Format("{0:yy/MM/dd}ÇÃéüèTÇÃ{1}:", date,dayOfWeek);
+                var str2 = string.Format("{0:yy/MM/dd(ddd)}", NextDay(date, dayOfWeek));
+                tbDisp.Text += str1 + str2 + "\r\n";
             }
         }
 
         public static DateTime NextDay(DateTime date, DayOfWeek dayOfWeek) {
+            var nextweek = date.AddDays(7);
             var days = (int)dayOfWeek - (int)date.DayOfWeek;
-            if (days <= 0) {
-                days += 7;
-            }
             return date.AddDays(days);
         }
     }
