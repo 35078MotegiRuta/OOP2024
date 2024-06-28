@@ -51,5 +51,9 @@ namespace CarReportSystem {
         private void btPicDelete_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            dgvCarReport.Columns["Picture"].Visible = false;
+        }
     }
 }
