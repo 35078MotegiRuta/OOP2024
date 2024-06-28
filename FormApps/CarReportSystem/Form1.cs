@@ -21,7 +21,7 @@ namespace CarReportSystem {
                 Maker = GetRadioButtonMaker(),
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
-                //Picture = pbPicture,
+                Picture = pbPicture.Image,
             };
             listCarReports.Add(carReport);
         }
@@ -41,6 +41,15 @@ namespace CarReportSystem {
             } else {
                 return CarReport.MakerGroup.‚»‚Ì‘¼;
             }
+        }
+
+        private void btPicOpen_Click(object sender, EventArgs e) {
+            if (ofdPicFileOpen.ShowDialog() == DialogResult.OK)
+                pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
+        }
+
+        private void btPicDelete_Click(object sender, EventArgs e) {
+            pbPicture.Image = null;
         }
     }
 }
