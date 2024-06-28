@@ -21,22 +21,22 @@ namespace CarReportSystem {
                 Maker = GetRadioButtonMaker(),
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
-                //Picture = pbPicture
+                //Picture = pbPicture,
             };
             listCarReports.Add(carReport);
         }
 
         //選択されているメーカー名を列挙型で返す
         private CarReport.MakerGroup GetRadioButtonMaker() {
-            if (rbToyota.Checked == true) {
+            if (rbToyota.Checked) {
                 return CarReport.MakerGroup.トヨタ;
-            } else if (rbNissan.Checked == true) {
+            } else if (rbNissan.Checked) {
                 return CarReport.MakerGroup.日産;
-            } else if (rbHonda.Checked == true) {
+            } else if (rbHonda.Checked) {
                 return CarReport.MakerGroup.ホンダ;
-            } else if (rbSubaru.Checked == true) {
+            } else if (rbSubaru.Checked) {
                 return CarReport.MakerGroup.スバル;
-            } else if (rbImport.Checked == true) {
+            } else if (rbImport.Checked) {
                 return CarReport.MakerGroup.輸入車;
             } else {
                 return CarReport.MakerGroup.その他;
