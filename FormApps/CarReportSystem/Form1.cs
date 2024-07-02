@@ -86,12 +86,21 @@ namespace CarReportSystem {
             if (dgvCarReport.CurrentRow == null) {
                 return;
             }
+
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
             setRadioButtonMaker((CarReport.MakerGroup)dgvCarReport.CurrentRow.Cells["Maker"].Value);
             cbCarName.Text = (string)dgvCarReport.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (string)dgvCarReport.CurrentRow.Cells["Report"].Value;
             pbPicture.Image = (Image)dgvCarReport.CurrentRow.Cells["Picture"].Value;
+        }
+
+        private void btDeleteReport_Click(object sender, EventArgs e) {
+            if (dgvCarReport.CurrentRow != null) {
+                int selectedIndex = dgvCarReport.CurrentRow.Index;
+                CarReport selectedReport = listCarReports[selectedIndex];
+                listCarReports.RemoveAt(selectedIndex);
+            }
         }
     }
 }
