@@ -26,7 +26,7 @@
             label1 = new Label();
             dtpDate = new DateTimePicker();
             label2 = new Label();
-            cbAuther = new ComboBox();
+            cbAuthor = new ComboBox();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
@@ -84,14 +84,14 @@
             label2.TabIndex = 0;
             label2.Text = "記録者";
             // 
-            // cbAuther
+            // cbAuthor
             // 
-            cbAuther.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            cbAuther.FormattingEnabled = true;
-            cbAuther.Location = new Point(101, 71);
-            cbAuther.Name = "cbAuther";
-            cbAuther.Size = new Size(302, 33);
-            cbAuther.TabIndex = 2;
+            cbAuthor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            cbAuthor.FormattingEnabled = true;
+            cbAuthor.Location = new Point(101, 71);
+            cbAuthor.Name = "cbAuthor";
+            cbAuthor.Size = new Size(302, 33);
+            cbAuthor.TabIndex = 2;
             // 
             // label3
             // 
@@ -153,7 +153,6 @@
             rbOther.Name = "rbOther";
             rbOther.Size = new Size(56, 19);
             rbOther.TabIndex = 0;
-            rbOther.TabStop = true;
             rbOther.Text = "その他";
             rbOther.UseVisualStyleBackColor = true;
             // 
@@ -164,7 +163,6 @@
             rbImport.Name = "rbImport";
             rbImport.Size = new Size(61, 19);
             rbImport.TabIndex = 0;
-            rbImport.TabStop = true;
             rbImport.Text = "輸入車";
             rbImport.UseVisualStyleBackColor = true;
             // 
@@ -175,7 +173,6 @@
             rbSubaru.Name = "rbSubaru";
             rbSubaru.Size = new Size(54, 19);
             rbSubaru.TabIndex = 0;
-            rbSubaru.TabStop = true;
             rbSubaru.Text = "スバル";
             rbSubaru.UseVisualStyleBackColor = true;
             // 
@@ -186,7 +183,6 @@
             rbHonda.Name = "rbHonda";
             rbHonda.Size = new Size(53, 19);
             rbHonda.TabIndex = 0;
-            rbHonda.TabStop = true;
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
             // 
@@ -197,7 +193,6 @@
             rbNissan.Name = "rbNissan";
             rbNissan.Size = new Size(49, 19);
             rbNissan.TabIndex = 0;
-            rbNissan.TabStop = true;
             rbNissan.Text = "日産";
             rbNissan.UseVisualStyleBackColor = true;
             // 
@@ -208,7 +203,6 @@
             rbToyota.Name = "rbToyota";
             rbToyota.Size = new Size(50, 19);
             rbToyota.TabIndex = 0;
-            rbToyota.TabStop = true;
             rbToyota.Text = "トヨタ";
             rbToyota.UseVisualStyleBackColor = true;
             // 
@@ -263,7 +257,7 @@
             // btAddReport
             // 
             btAddReport.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btAddReport.Location = new Point(512, 274);
+            btAddReport.Location = new Point(519, 274);
             btAddReport.Name = "btAddReport";
             btAddReport.Size = new Size(75, 37);
             btAddReport.TabIndex = 5;
@@ -306,13 +300,14 @@
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCarReport.Location = new Point(101, 329);
+            dgvCarReport.Location = new Point(97, 329);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
             dgvCarReport.ReadOnly = true;
             dgvCarReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCarReport.Size = new Size(666, 150);
             dgvCarReport.TabIndex = 7;
+            dgvCarReport.Click += dgvCarReport_Click;
             // 
             // btReportSave
             // 
@@ -355,7 +350,7 @@
             Controls.Add(tbReport);
             Controls.Add(groupBox1);
             Controls.Add(cbCarName);
-            Controls.Add(cbAuther);
+            Controls.Add(cbAuthor);
             Controls.Add(dtpDate);
             Controls.Add(label6);
             Controls.Add(label7);
@@ -380,7 +375,7 @@
         private Label label1;
         private DateTimePicker dtpDate;
         private Label label2;
-        private ComboBox cbAuther;
+        private ComboBox cbAuthor;
         private Label label3;
         private Label label4;
         private Label label5;
