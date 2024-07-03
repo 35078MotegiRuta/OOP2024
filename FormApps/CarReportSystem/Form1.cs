@@ -23,7 +23,6 @@ namespace CarReportSystem {
                 Picture = pbPicture.Image,
             };
             listCarReports.Add(carReport);
-
         }
 
         //選択されているメーカー名を列挙型で返す
@@ -96,11 +95,20 @@ namespace CarReportSystem {
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow != null) {
-                int selectedIndex = dgvCarReport.CurrentRow.Index;
-                CarReport selectedReport = listCarReports[selectedIndex];
-                listCarReports.RemoveAt(selectedIndex);
-            }
+            listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
+        }
+
+        private void btModifyReport_Click(object sender, EventArgs e) {
+            CarReport carReport = listCarReports[dgvCarReport.CurrentCell.RowIndex];
+
+            carReport.Date = dtpDate.Value;
+            carReport.Author = cbAuthor.Text;
+            carReport.Maker = GetRadioButtonMaker();
+            carReport.CarName = cbCarName.Text;
+            carReport.Report = tbReport.Text;
+            carReport.Picture = pbPicture.Image;
+
+            dgvCarReport.Refresh(); // データグリッドビューの表示を更新する
         }
     }
 }
