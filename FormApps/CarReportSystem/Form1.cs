@@ -36,6 +36,7 @@ namespace CarReportSystem {
 
             dgvCarReport.ClearSelection();//セレクションを外す
             inputItemsAllClear();//入力項目をクリア
+
         }
 
         private void inputItemsAllClear() {
@@ -134,7 +135,8 @@ namespace CarReportSystem {
 
         //データグリッドビューの設定（セルの名前とクリックしても大丈夫なようにする）
         private void dgvCarReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.Rows.Count == 0) return;
+            if ((dgvCarReport.Rows.Count == 0)
+                || (!dgvCarReport.CurrentRow.Selected)) return;
 
             dtpDate.Value = (DateTime)dgvCarReport.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (string)dgvCarReport.CurrentRow.Cells["Author"].Value;
@@ -150,13 +152,18 @@ namespace CarReportSystem {
 
         //削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow == null) return;
+            if ((dgvCarReport.CurrentRow == null)
+                || (!dgvCarReport.CurrentRow.Selected)) return;
+
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
+            dgvCarReport.ClearSelection();//セレクションを外す
+            inputItemsAllClear();//入力項目をクリア
         }
 
         //修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow == null) return;
+            if((dgvCarReport.CurrentRow == null)
+                || (!dgvCarReport.CurrentRow.Selected)) return;
 
             listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
@@ -166,6 +173,16 @@ namespace CarReportSystem {
             listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
 
             dgvCarReport.Refresh(); //データグリッドビューの更新
+        }
+
+        //記録者のテキストが編集されたら
+        private void cdAuther_TextChanged(object sender, EventArgs e) {
+            tslbMessage.Text = "";
+        }
+
+        //車名のテキストが編集されたら
+        private void cdCarName_TextChanged(object sender, EventArgs e) {
+            tslbMessage.Text = "";
         }
     }
 }
