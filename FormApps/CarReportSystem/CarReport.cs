@@ -8,6 +8,7 @@ namespace CarReportSystem {
     public class CarReport {
         //列挙型
         public enum MakerGroup {
+            なし,
             トヨタ,
             日産,
             ホンダ,
@@ -26,7 +27,7 @@ namespace CarReportSystem {
         public string CarName { get; set; } = string.Empty; //車名
         [System.ComponentModel.DisplayName("レポート")] 
         public string Report { get; set; } = string.Empty; //レポート
-        [System.ComponentModel.DisplayName("画像")]
+        //[System.ComponentModel.Browsable(false)]
         public Image? Picture { get; set; }  //画像
     }
 }
