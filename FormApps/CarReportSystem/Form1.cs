@@ -136,15 +136,25 @@ namespace CarReportSystem {
             //交互に色を設定（データグリッドビュー）
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
-        
 
-        //設定ファイルを逆シリアル化して背景を設定
-        using(var reader = XmlReader.Create("setting.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                var setting = serializer.Deserialize(reader) as Settings;
-                Console.WriteLine(setting);
+            if (File.Exists("settings.xml")) { 
+            //設定ファイルを逆シリアル化して背景を設定
+                try {
+                    using (var reader = XmlReader.Create("settings.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFromColor);
+                        settings.MainFromColor=BackColor.ToArgb();
+                    }
+                } 
+            catch (Exception){
+                    tslbMessage.Text = "色設定ファイルエラー";
+                }
+            } else {
+                tslbMessage.Text = "色設定ファイルがありません";
             }
         }
+
         
         private void dgvCarReport_Click(object sender, EventArgs e) {
             if ((dgvCarReport.Rows.Count == 0)
@@ -284,7 +294,7 @@ namespace CarReportSystem {
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルのシリアル化
             try {
-                using (var writer = XmlWriter.Create("setting.xml")) {
+                using (var writer = XmlWriter.Create("settings.xml")) {
                     var serializer = new XmlSerializer(settings.GetType());
                     serializer.Serialize(writer, settings);
                 }
