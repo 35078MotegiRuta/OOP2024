@@ -302,10 +302,5 @@ namespace CarReportSystem {
                 MessageBox.Show("設定ファイル書き込みエラー");
             }
         }
-
-        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
-            var fmversion = new fmVersion();
-            fmversion.ShowDialog();
-        }
     }
 }
