@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             btVersionOk = new Button();
             label1 = new Label();
-            label2 = new Label();
+            fmVersionLable = new Label();
             SuspendLayout();
             // 
             // btVersionOk
@@ -42,33 +42,34 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 128);
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(77, 35);
             label1.Name = "label1";
             label1.Size = new Size(203, 32);
             label1.TabIndex = 1;
             label1.Text = "CarReportSystem";
             // 
-            // label2
+            // fmVersionLable
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label2.Location = new Point(71, 41);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 21);
-            label2.TabIndex = 1;
-            label2.Text = "Ver.0.0.1";
+            fmVersionLable.AutoSize = true;
+            fmVersionLable.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            fmVersionLable.Location = new Point(135, 67);
+            fmVersionLable.Name = "fmVersionLable";
+            fmVersionLable.Size = new Size(68, 21);
+            fmVersionLable.TabIndex = 1;
+            fmVersionLable.Text = "Ver.0.0.1";
             // 
             // fmVersion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(354, 159);
-            Controls.Add(label2);
+            Controls.Add(fmVersionLable);
             Controls.Add(label1);
             Controls.Add(btVersionOk);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "fmVersion";
             Text = "fmVersion";
+            Load += fmVersion_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -77,6 +78,6 @@
 
         private Button btVersionOk;
         private Label label1;
-        private Label label2;
+        private Label fmVersionLable;
     }
 }
