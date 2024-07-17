@@ -22,7 +22,8 @@ namespace CarReportSystem {
         private void fmVersion_Load(object sender, EventArgs e) {
             var asm = Assembly.GetExecutingAssembly();
             var ver = asm.GetName().Version;
-            fmVersionLable.Text = ver.ToString();
+            fmVersionLable.Text = $"Version: {ver}";
+
         }
     }
 }
