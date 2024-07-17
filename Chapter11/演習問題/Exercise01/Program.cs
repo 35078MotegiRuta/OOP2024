@@ -24,6 +24,7 @@ namespace Exercise01 {
         private static void Exercise1_1(string file) {
             var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements();
+
             foreach (var x in xelements) {
                 var xname = x.Element("name");
                 var xmember = x.Element("teammembers");
@@ -45,7 +46,14 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(string file) {
+            var xdoc = XDocument.Load(file);
+            var xelements = xdoc.Root.Elements()
+                 .OrderByDescending(x => int.Parse(x.Element("teammembers").Value))
+                 .First();
 
+            var xname = xelements.Element("name").Value;
+
+            Console.WriteLine("{0}", xname);
         }
 
         private static void Exercise1_4(string file, string newfile) {
