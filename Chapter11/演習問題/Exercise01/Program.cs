@@ -22,22 +22,25 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(string file) {
-            var xdoc = XDocument.Load("Sample.xml");
-            foreach (var x in xdoc.Root.Elements()) {
+            var xdoc = XDocument.Load(file);
+            var xelements = xdoc.Root.Elements();
+            foreach (var x in xelements) {
                 var xname = x.Element("name");
-                var member = x.Element("teammembers");
-                Console.WriteLine("{0} {1}", xname.Value, member.Value);
+                var xmember = x.Element("teammembers");
+                Console.WriteLine("{0} {1}", xname.Value, xmember.Value);
             }
         }
 
         private static void Exercise1_2(string file) {
-            var xdoc = XDocument.Load("Sample.xml");
+            var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements()
-                .OrderBy(x => (string)x.Attribute("firstplayed"));
-            foreach (var x in xdoc.Root.Elements()) {
+                   .OrderBy(x => x.Element("firstplayed").Value);
+
+            foreach (var x in xelements) {
                 var xname = x.Element("name");
-                var xkanji = x.Attribute("kanji");
-                Console.WriteLine("{0} {1}", xname.Value, xkanji.Value);
+                var xkanji = xname.Attribute("kanji");
+                var xfirstplayed = x.Element("firstplayed"); 
+                Console.WriteLine("{0} {1}", xkanji.Value, xfirstplayed.Value);
             }
         }
 
