@@ -86,13 +86,14 @@ namespace Exercise01 {
 
                 xElements.Add(element);//リストに要素追加
 
+                Console.WriteLine();
                 Console.WriteLine("追加(1)/保存(2)");
                 Console.Write(">");
                 nextFlag = int.Parse(Console.ReadLine());
                     if (nextFlag == 2) {
                         break;//ループ終了
-                    Console.WriteLine();
                 }
+                Console.WriteLine();
                 xdoc.Root.Add(element);
                 xdoc.Save(newfile);//保存
             }
