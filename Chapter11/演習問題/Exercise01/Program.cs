@@ -41,14 +41,14 @@ namespace Exercise01 {
                 var xname = x.Element("name");
                 var xkanji = xname.Attribute("kanji");
                 var xfirstplayed = x.Element("firstplayed"); 
-                Console.WriteLine("{0} {1}", xkanji.Value, xfirstplayed.Value);
+                Console.WriteLine("{0} ({1})", xkanji.Value, xfirstplayed.Value);
             }
         }
 
         private static void Exercise1_3(string file) {
             var xdoc = XDocument.Load(file);
             var xelements = xdoc.Root.Elements()
-                 .OrderByDescending(x => int.Parse(x.Element("teammembers").Value))
+                 .OrderByDescending(x => x.Element("teammembers").Value)
                  .First();
 
             var xname = xelements.Element("name").Value;
