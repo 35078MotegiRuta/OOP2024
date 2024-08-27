@@ -17,7 +17,7 @@ namespace Exercise01 {
             Console.WriteLine(File.ReadAllText("employee.xml"));
             Console.WriteLine();
 
-            Exercise1_2("employees.xml");
+            Exercise1_2(File.ReadAllText("employee.xml"));
             Exercise1_3("employees.xml");
             Console.WriteLine();
 
@@ -59,6 +59,11 @@ namespace Exercise01 {
                     HireDate = new DateTime(2004, 12, 1),
                 },
             };
+
+            using (var writer = XmlWriter.Create(outfile)) {
+                var serializer = new DataContractSerializer(emps.GetType());
+                serializer.WriteObject(writer, emps);
+            }
         }
 
         private static void Exercise1_3(string file) {
