@@ -14,5 +14,4 @@ namespace Section01 {
                                   Title, Author, Published);
         }
     }
-
 }
