@@ -28,7 +28,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(string outfile) {
-            var employee = new Employee {
+            var emp = new Employee {
                 Id = 100,
                 Name = "山田太郎",
                 HireDate = new DateTime(2000,1,1),
@@ -40,14 +40,25 @@ namespace Exercise01 {
                 IndentChars = " ",
             };
 
-            using (var emplo = XmlWriter.Create(outfile, settings)) {
-                var serializer = new XmlSerializer(typeof(Employee));
-                serializer.Serialize(emplo, employee);
+            using (var writer = XmlWriter.Create(outfile, settings)) {
+                var serializer = new XmlSerializer(emp.GetType());
+                serializer.Serialize(writer, emp);
             }
         }
 
         private static void Exercise1_2(string outfile) {
-
+            var emps = new Employee[] {
+                new Employee {
+                    Id = 123,
+                    Name = "出井 秀行",
+                    HireDate = new DateTime(2001, 5, 10),
+                },
+                new Employee {
+                    Id = 139,
+                    Name = "大橋 考仁",
+                    HireDate = new DateTime(2004, 12, 1),
+                },
+            };
         }
 
         private static void Exercise1_3(string file) {
