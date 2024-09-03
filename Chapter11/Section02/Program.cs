@@ -31,6 +31,7 @@ namespace Section02 {
                 Console.WriteLine("{0} {1}", xname.Value, birth.ToShortDateString());
             }
 
+            //保存
             xdoc.Save("newXmlFile.xml");
         }
     }
