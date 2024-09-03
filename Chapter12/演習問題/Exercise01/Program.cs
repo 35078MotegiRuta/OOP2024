@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -17,7 +16,7 @@ namespace Exercise01 {
             Console.WriteLine(File.ReadAllText("employee.xml"));
             Console.WriteLine();
 
-            Exercise1_2(File.ReadAllText("employee.xml"));
+            Exercise1_2("employees.xml");
             Exercise1_3("employees.xml");
             Console.WriteLine();
 
@@ -29,18 +28,12 @@ namespace Exercise01 {
 
         private static void Exercise1_1(string outfile) {
             var emp = new Employee {
-                Id = 100,
-                Name = "山田太郎",
-                HireDate = new DateTime(2000,1,1),
+                Id = 123,
+                Name = "山田　太郎",
+                HireDate = new DateTime(2000, 1, 1),
             };
 
-            var settings = new XmlWriterSettings {
-                Encoding = new UTF8Encoding(false),
-                Indent = true,
-                IndentChars = " ",
-            };
-
-            using (var writer = XmlWriter.Create(outfile, settings)) {
+            using (var writer = XmlWriter.Create(outfile)) {
                 var serializer = new XmlSerializer(emp.GetType());
                 serializer.Serialize(writer, emp);
             }
@@ -50,16 +43,15 @@ namespace Exercise01 {
             var emps = new Employee[] {
                 new Employee {
                     Id = 123,
-                    Name = "出井 秀行",
-                    HireDate = new DateTime(2001, 5, 10),
+                    Name = "山田　太郎",
+                    HireDate = new DateTime(2000, 1, 1),
                 },
                 new Employee {
                     Id = 139,
-                    Name = "大橋 考仁",
-                    HireDate = new DateTime(2004, 12, 1),
+                    Name = "大仁田　厚",
+                    HireDate = new DateTime(2004, 2, 1),
                 },
             };
-
             using (var writer = XmlWriter.Create(outfile)) {
                 var serializer = new DataContractSerializer(emps.GetType());
                 serializer.WriteObject(writer, emps);
@@ -67,10 +59,39 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(string file) {
-
+            using (var reader = XmlReader.Create(file)) {
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var emps = serializer.ReadObject(reader) as Employee[];
+                foreach (var emp in emps) {
+                    Console.WriteLine("{0} {1} {2}", emp.Id, emp.Name, emp.HireDate);
+                }
+            }
         }
 
         private static void Exercise1_4(string file) {
+            var emps = new Employee[] {
+                new Employee {
+                    Id = 123,
+                    Name = "山田　太郎",
+                    HireDate = new DateTime(2000, 1, 1),
+                },
+                new Employee {
+                    Id = 139,
+                    Name = "大仁田　厚",
+                    HireDate = new DateTime(2004, 2, 1),
+                },
+            };
+
+            using (var stream = new FileStream(file, FileMode.Create, FileAccess.Write)) {
+                
+                var options = new JsonSerializerOptions {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,  //キー名のカスタマイズ
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                    WriteIndented = true,
+                };
+
+                JsonSerializer.Serialize(stream, emps, options);
+            }
 
         }
     }
