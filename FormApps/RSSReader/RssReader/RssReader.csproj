@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C0EDAB1-64E2-46C4-90E3-E6EBD9CB89EA}</ProjectGuid>
+    <ProjectGuid>{5A9BFBEF-6D8A-4E35-A66A-BCF1B6EB0477}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RSSReader</RootNamespace>
-    <AssemblyName>RSSReader</AssemblyName>
+    <RootNamespace>RssReader</RootNamespace>
+    <AssemblyName>RssReader</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.toolkit.forms.ui.controls.webview\6.1.2\lib\net462\Microsoft.Toolkit.Forms.UI.Controls.WebView.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs" />
