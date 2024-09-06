@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RSSReader {
+namespace RssReader {
     internal static class Program {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。

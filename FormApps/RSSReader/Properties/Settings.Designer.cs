@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RSSReader.Properties {
+namespace RssReader.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
