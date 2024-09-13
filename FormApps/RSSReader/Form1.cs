@@ -145,7 +145,6 @@ namespace RssReader {
         }
 
         private void btDelete_Click(object sender, EventArgs e) {
-            // コンボボックスで選択されたアイテムを取得
             var selectedPair = cbRssUrl.SelectedItem as CategoryUrlPair;
 
             if (selectedPair == null) {
@@ -153,22 +152,18 @@ namespace RssReader {
                 return;
             }
 
-            // デフォルト項目かどうかをチェック
             if (defaultCategories.Contains(selectedPair)) {
                 MessageBox.Show("デフォルトの項目は削除できません。", "削除エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // リストから削除
             categoryUrlPairs.Remove(selectedPair);
 
-            // コンボボックスのデータソースを更新
-            cbRssUrl.DataSource = null; // 一度データソースをクリア
-            cbRssUrl.DataSource = categoryUrlPairs; // 新しいデータソースを設定
+            cbRssUrl.DataSource = null;
+            cbRssUrl.DataSource = categoryUrlPairs;
             cbRssUrl.DisplayMember = "Category";
             cbRssUrl.ValueMember = "Url";
 
-            // 成功メッセージを表示
             MessageBox.Show("削除しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
