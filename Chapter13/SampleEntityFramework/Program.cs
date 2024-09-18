@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 namespace SampleEntityFramework {
     internal class Program {
         static void Main(string[] args) {
-            //AddBooks();
-            DisplayAllBooks2();
+            //DeleteAllBooksAndAuthors();
             //InsertBooks();
+            //AddAuthors();
+            //AddBooks();
+            //UpdateBook();
+            //DeleteBook();
+            //DisplayAllBooks2();
 
             Console.WriteLine();
             Console.WriteLine("# 1.3");
@@ -41,7 +45,19 @@ namespace SampleEntityFramework {
         }
 
         private static void Exercise1_5() {
+            using (var db = new BooksDbContext()) {
+                var authors = db.Authors
+                    .OrderByDescending(a => a.Birthday)
+                    .ToList();
 
+                foreach (var author in authors) {
+                    Console.WriteLine($"著者:{author.Name} ");
+
+                    foreach (var book in author.Books) {
+                        Console.WriteLine($"タイトル:{book.Title} 発行年:{book.PublishedYear} ");
+                    }
+                }
+            }
         }
 
         //データの追加
@@ -200,9 +216,8 @@ namespace SampleEntityFramework {
             using (var db = new BooksDbContext()) {
                 var longestTitleBook = db.Books
                     .OrderByDescending(b => b.Title.Length)
-                    .First(); // 最も長いタイトルを持つ書籍を取得
+                    .First();
 
-                // 書籍の詳細を表示
                 Console.WriteLine("{0}{1}{2}({3:yyyy/mm/dd}))",
                     longestTitleBook.Title, longestTitleBook.PublishedYear,
                     longestTitleBook.Author.Name, longestTitleBook.Author.Birthday
