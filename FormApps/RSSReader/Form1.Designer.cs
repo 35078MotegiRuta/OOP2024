@@ -67,7 +67,7 @@
             // 
             this.tbRssName.Location = new System.Drawing.Point(125, 45);
             this.tbRssName.Name = "tbRssName";
-            this.tbRssName.Size = new System.Drawing.Size(540, 19);
+            this.tbRssName.Size = new System.Drawing.Size(299, 19);
             this.tbRssName.TabIndex = 3;
             // 
             // lbRssTitle
@@ -108,7 +108,7 @@
             // 
             // btJoin
             // 
-            this.btJoin.Location = new System.Drawing.Point(671, 41);
+            this.btJoin.Location = new System.Drawing.Point(430, 45);
             this.btJoin.Name = "btJoin";
             this.btJoin.Size = new System.Drawing.Size(75, 23);
             this.btJoin.TabIndex = 7;

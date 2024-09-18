@@ -8,13 +8,40 @@ using System.Threading.Tasks;
 namespace SampleEntityFramework {
     internal class Program {
         static void Main(string[] args) {
-            InsertBooks();
-            AddAuthors();
-            AddBooks();
-            UpdateBook();
-            DeleteBook();
+            //AddBooks();
             DisplayAllBooks2();
-            //DeleteAllBooksAndAuthors();
+            //InsertBooks();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.3");
+            DisplayAllBooks3();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.4");
+            Exercise1_4();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.5");
+            Exercise1_5();
+
+            Console.ReadLine(); //コンソールアプリだが F5 でデバッグ実行したいために記述
+        }
+
+        private static void Exercise1_4() {
+            using (var db = new BooksDbContext()) {
+                var oldestBooks = db.Books
+                    .OrderBy(b => b.PublishedYear)
+                    .Take(3)
+                    .ToList();
+
+                foreach (var book in oldestBooks) {
+                    Console.WriteLine("{0}  {1}", book.Title, book.Author.Name);
+                }
+            }
+        }
+
+        private static void Exercise1_5() {
+
         }
 
         //データの追加
@@ -156,7 +183,7 @@ namespace SampleEntityFramework {
             Console.ReadLine();
         }
 
-        //テーブルの全表示
+        //13,1,2
         static void DisplayAllBooks2() {
             using (var db = new BooksDbContext()) {
                 foreach (var book in db.Books.ToList()) {
@@ -165,6 +192,21 @@ namespace SampleEntityFramework {
                         book.Author.Name, book.Author.Birthday
                         );
                 }
+            }
+        }
+
+        //13,1,3
+        static void DisplayAllBooks3() {
+            using (var db = new BooksDbContext()) {
+                var longestTitleBook = db.Books
+                    .OrderByDescending(b => b.Title.Length)
+                    .First(); // 最も長いタイトルを持つ書籍を取得
+
+                // 書籍の詳細を表示
+                Console.WriteLine("{0}{1}{2}({3:yyyy/mm/dd}))",
+                    longestTitleBook.Title, longestTitleBook.PublishedYear,
+                    longestTitleBook.Author.Name, longestTitleBook.Author.Birthday
+                    );
             }
         }
 
