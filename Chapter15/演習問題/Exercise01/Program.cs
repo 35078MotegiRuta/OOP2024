@@ -58,7 +58,7 @@ namespace Exercise01 {
                 });
 
             foreach (var book in books) {
-                Console.WriteLine($"{book.PublishedYear}年 {book.Price}円 {book.Title}({book.CategoryId})");
+                Console.WriteLine($"{book.PublishedYear}年 {book.Price}円 {book.Title}");
             }
         }
 
