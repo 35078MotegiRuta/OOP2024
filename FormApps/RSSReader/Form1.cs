@@ -166,5 +166,7 @@ namespace RssReader {
 
             MessageBox.Show("削除しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        
     }
 }

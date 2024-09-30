@@ -74,11 +74,12 @@
             // 
             this.lbRssTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbRssTitle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(12, 74);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(201, 496);
+            this.lbRssTitle.Size = new System.Drawing.Size(201, 520);
             this.lbRssTitle.TabIndex = 4;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
@@ -91,7 +92,7 @@
             this.wbRss.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbRss.Name = "wbRss";
             this.wbRss.ScriptErrorsSuppressed = true;
-            this.wbRss.Size = new System.Drawing.Size(689, 496);
+            this.wbRss.Size = new System.Drawing.Size(683, 519);
             this.wbRss.TabIndex = 5;
             // 
             // btGet
@@ -132,7 +133,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(920, 581);
+            this.ClientSize = new System.Drawing.Size(914, 604);
             this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btJoin);
             this.Controls.Add(this.btGet);
