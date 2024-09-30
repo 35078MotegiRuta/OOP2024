@@ -48,22 +48,35 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4() {
-            var books = Library.Books
-                .OrderByDescending(x => x.PublishedYear)
-                .ThenByDescending(x => x.Price)
-                .Select(x => new {
-                    x.Title,
-                    x.PublishedYear,
-                    x.Price,
-                });
+            var query = Library.Books
+                .Join(Library.Categories,
+                    Book => Book.CategoryId,
+                    category => category.Id,
+                    (book, category) => new {
+                        book.Title,
+                        book.PublishedYear,
+                        book.Price,
+                        CategoryName = category.Name,
+                    });
 
-            foreach (var book in books) {
-                Console.WriteLine($"{book.PublishedYear}年 {book.Price}円 {book.Title}");
+            foreach (var book in query) {
+                Console.WriteLine($"{book.PublishedYear}年 {book.Price}円 {book.Title} ({book.CategoryName})");
             }
         }
 
 
         private static void Exercise1_5() {
+            var names = Library.Books
+                .Where(b => b.PublishedYear == 2016)
+                .Join(Library.Categories,
+                    book => book.CategoryId,
+                    category => category.Id,
+                    (book, category) => category.Name)
+                .Distinct();
+            foreach (var name in names) {
+                Console.WriteLine(name);
+            }
+
         }
 
         private static void Exercise1_6() {
