@@ -57,7 +57,8 @@ namespace Exercise01 {
                         book.PublishedYear,
                         book.Price,
                         CategoryName = category.Name,
-                    });
+                    }).OrderBy(x => x.PublishedYear)
+                    .ThenByDescending(x => x.Price);
 
             foreach (var book in query) {
                 Console.WriteLine($"{book.PublishedYear}年 {book.Price}円 {book.Title} ({book.CategoryName})");
