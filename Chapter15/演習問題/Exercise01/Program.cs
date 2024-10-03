@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Exercise01 {
@@ -81,12 +82,51 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_6() {
+            var query = Library.Books
+                .Join(Library.Categories,
+                    book => book.CategoryId,
+                    category => category.Id,
+                    (book, category) => new {
+                        book.Title,
+                        categoryName = category.Name,
+                    })
+                .GroupBy(x => x.categoryName)
+                .OrderBy(x => x.Key);
+            foreach (var group in query) {
+                Console.WriteLine($"#{group.Key}");
+                foreach (var item in group) {
+                    Console.WriteLine($" {item.Title}");
+                }
+            }
         }
 
         private static void Exercise1_7() {
+            var categoriesId = Library.Categories.Single(c => c.Name == "Development").Id;
+            var query = Library.Books.Where(b => b.CategoryId == categoriesId)
+                                        .GroupBy(b => b.PublishedYear)
+                                        .OrderBy(b => b.Key);
+            foreach (var group in query) {
+                Console.WriteLine($"#{group.Key}");
+                foreach (var item in group) {
+                    Console.WriteLine($" {item.Title}");
+                }
+            }
         }
 
         private static void Exercise1_8() {
+            var query = Library.Categories
+                            .GroupJoin(Library.Books,
+                                        c => c.Id,
+                                        b => b.CategoryId,
+                                        (c, b) => new {
+                                            categoryName = c.Name,
+                                            count = b.Count()
+                                        })
+                                        .Where(x => x.count >= 4);
+
+            foreach (var group in query) {
+                Console.WriteLine(group.categoryName + "(" + group.count + ")");
+            }
         }
     }
 }
