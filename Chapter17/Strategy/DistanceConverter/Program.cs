@@ -18,7 +18,7 @@ namespace DistanceConverter {
             }
         }
 
-        static double GetDitance(ConverterBase from) {
+        static double GetDitance(ConverterBase from) { 
             double? value = null;
             do {
                 Console.Write($"変換したい距離（単位：{from.UnitName})を入力してください => ");
