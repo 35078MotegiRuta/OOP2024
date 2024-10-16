@@ -27,5 +27,7 @@ namespace TextFileProcessor {
         protected virtual void Initialize(string fname) { }
         protected virtual void Execute(string line) { }
         protected virtual void Terminate() { }
+
+        //全角数字を半角数字に　１２３４５６７８９
     }
 }
