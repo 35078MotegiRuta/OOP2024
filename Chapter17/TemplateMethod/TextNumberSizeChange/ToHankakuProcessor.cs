@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TextFileProcessor; 
+using TextFileProcessor;
+using TextNumberSizeChange.FrameWork;
 
 namespace TextNumberSizeChange {
-    class ToHankakuProcessor : TextProcessor{
+    class ToHankakuProcessor : ITextFileService {
 
         private Dictionary<char, char> _conversionMap;
 
-        protected override void Initialize(string fname) {
+        public void Initialize(string fname) {
             _conversionMap = new Dictionary<char, char> {
                 { '０', '0' },
                 { '１', '1' },
@@ -25,14 +26,14 @@ namespace TextNumberSizeChange {
             };
         }
 
-        protected override void Execute(string line) {
+        public void Execute(string line) {
             foreach (var kvp in _conversionMap) {
                 line = line.Replace(kvp.Key, kvp.Value);
             }
             Console.WriteLine(line);
         }
 
-        protected override void Terminate() {
+        public void Terminate() {
 
         }
     }
