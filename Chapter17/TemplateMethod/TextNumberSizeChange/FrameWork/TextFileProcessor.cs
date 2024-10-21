@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextNumberSizeChange.FrameWork {
+namespace TextNumberSizeChange.Framework {
     public class TextFileProcessor {
         private ITextFileService _service;
 

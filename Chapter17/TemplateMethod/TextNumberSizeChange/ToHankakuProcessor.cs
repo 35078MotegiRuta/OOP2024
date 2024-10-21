@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TextFileProcessor;
-using TextNumberSizeChange.FrameWork;
+using TextNumberSizeChange.Framework;
 
 namespace TextNumberSizeChange {
     class ToHankakuProcessor : ITextFileService {
