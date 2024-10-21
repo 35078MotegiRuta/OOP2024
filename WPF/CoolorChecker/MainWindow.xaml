@@ -40,6 +40,7 @@
             <TextBox Grid.Row="2" x:Name="bValue" Grid.Column="2" Text="{Binding Value, ElementName=bSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
 
         </Grid>
+        
 
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
