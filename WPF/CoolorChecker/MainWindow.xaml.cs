@@ -21,5 +21,13 @@ namespace CoolorChecker {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            int rvalue = (int)rSlider.Value;
+            int gvalue = (int)gSlider.Value;
+            int bvalue = (int)bSlider.Value;
+
+            colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rvalue, (byte)gvalue, (byte)bvalue));
+        }
     }
 }

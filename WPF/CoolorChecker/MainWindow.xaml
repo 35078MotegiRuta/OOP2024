@@ -28,17 +28,18 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="R" FontSize="30"/>
-            <Slider Grid.Row="0" Grid.Column="1" x:Name="rSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" x:Name="rValue" Grid.Column="2" Text="{Binding Value, ElementName=rSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+            <Slider Grid.Row="0" Grid.Column="1" x:Name="rSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
+            <TextBox Grid.Row="0" Grid.Column="2" x:Name="rValue" Text="{Binding Value, ElementName=rSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
 
             <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="G" FontSize="30"/>
-            <Slider Grid.Row="1" Grid.Column="1" x:Name="gSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" x:Name="gValue" Grid.Column="2" Text="{Binding Value, ElementName=gSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+            <Slider Grid.Row="1" Grid.Column="1" x:Name="gSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="gValue" Text="{Binding Value, ElementName=gSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="B" FontSize="30"/>
-            <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" x:Name="bValue" Grid.Column="2" Text="{Binding Value, ElementName=bSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+            <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
+            <TextBox Grid.Row="2" Grid.Column="2" x:Name="bValue" Text="{Binding Value, ElementName=bSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
 
+            <ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
         </Grid>
         
 
@@ -48,8 +49,8 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="20" Margin="10"/>
-            <ListBox x:Name="StackList" Grid.Row="1" Margin="10" />
+            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="16" Margin="10"/>
+            <ListBox x:Name="StackList" Grid.Row="1" Margin="10,0,10,10" />
         </Grid>
     </Grid>
 </Window>
