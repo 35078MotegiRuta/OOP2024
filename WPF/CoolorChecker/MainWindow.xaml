@@ -1,0 +1,54 @@
+﻿<Window x:Class="CoolorChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoolorChecker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="colorArea" Margin="10" Background="Black"/>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="R" FontSize="30"/>
+            <Slider Grid.Row="0" Grid.Column="1" x:Name="rSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" x:Name="rValue" Grid.Column="2" Text="{Binding Value, ElementName=rSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="G" FontSize="30"/>
+            <Slider Grid.Row="1" Grid.Column="1" x:Name="gSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" x:Name="gValue" Grid.Column="2" Text="{Binding Value, ElementName=gSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="B" FontSize="30"/>
+            <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Minimum="0" Maximum="255" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" x:Name="bValue" Grid.Column="2" Text="{Binding Value, ElementName=bSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="20"/>
+
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="20" Margin="10"/>
+            <ListBox x:Name="StackList" Grid.Row="1" Margin="10" />
+        </Grid>
+    </Grid>
+</Window>
