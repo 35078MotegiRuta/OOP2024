@@ -35,11 +35,15 @@ namespace CoolorChecker {
             byte g = (byte)gSlider.Value;
             byte b = (byte)bSlider.Value;
 
+            Color newColor = Color.FromRgb(r, g, b);
             MyColor myColor = new MyColor {
-                Color = Color.FromRgb(r, g, b),
+                Color = newColor,
                 Name = $"R: {r}, G: {g}, B: {b}"
             };
-            stockList.Items.Add(myColor);
+
+            if (!stockList.Items.Cast<MyColor>().Any(c => c.Color == newColor)) {
+                stockList.Items.Add(myColor);
+            }
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
