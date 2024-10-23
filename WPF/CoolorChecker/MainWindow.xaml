@@ -31,19 +31,19 @@
             <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="R" FontSize="30"/>
             <Slider Grid.Row="0" Grid.Column="1" x:Name="rSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
             <TextBox Grid.Row="0" Grid.Column="2" x:Name="rValue" 
-                     Text="{Binding Value, ElementName=rSlider, StringFormat=F0, Mode=OneWay}" 
+                     Text="{Binding Value, ElementName=rSlider, StringFormat=F0, Mode=TwoWay,Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                      VerticalAlignment="Center" FontSize="20"/>
 
             <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="G" FontSize="30"/>
             <Slider Grid.Row="1" Grid.Column="1" x:Name="gSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
             <TextBox Grid.Row="1" Grid.Column="2" x:Name="gValue" 
-                     Text="{Binding Value, ElementName=gSlider, StringFormat=F0, Mode=OneWay}" 
+                     Text="{Binding Value, ElementName=gSlider, StringFormat=F0, Mode=TwoWay,Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                      VerticalAlignment="Center" FontSize="20"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="B" FontSize="30"/>
             <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
             <TextBox Grid.Row="2" Grid.Column="2" x:Name="bValue" 
-                     Text="{Binding Value, ElementName=bSlider, StringFormat=F0, Mode=OneWay}" 
+                     Text="{Binding Value, ElementName=bSlider, StringFormat=F0, Mode=TwoWay,Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                      VerticalAlignment="Center" FontSize="20"/>
 
             <ComboBox x:Name="colorSelectComboBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>

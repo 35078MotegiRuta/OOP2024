@@ -18,16 +18,15 @@ namespace CoolorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        MyColor currentColor = new MyColor();//現在設定している色情報
+
         public MainWindow() {
             InitializeComponent();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            byte r = (byte)rSlider.Value;
-            byte g = (byte)gSlider.Value;
-            byte b = (byte)bSlider.Value;
-
-            colorArea.Background = new SolidColorBrush(Color.FromRgb(r, g, b));
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
