@@ -30,19 +30,7 @@ namespace CoolorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            byte r = (byte)rSlider.Value;
-            byte g = (byte)gSlider.Value;
-            byte b = (byte)bSlider.Value;
-
-            Color newColor = Color.FromRgb(r, g, b);
-            MyColor myColor = new MyColor {
-                Color = newColor,
-                Name = $"R: {r}, G: {g}, B: {b}"
-            };
-
-            if (!stockList.Items.Cast<MyColor>().Any(c => c.Color == newColor)) {
-                stockList.Items.Add(myColor);
-            }
+            stockList.Items.Insert(0, currentColor);
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
