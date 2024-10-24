@@ -41,7 +41,7 @@
                      VerticalAlignment="Center" FontSize="20"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="B" FontSize="30"/>
-            <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Maximum="255" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
+            <Slider Grid.Row="2" Grid.Column="1" x:Name="bSlider" Maximum="255" VerticalAlignment="Center" ValueChanged ="Slider_ValueChanged"/>
             <TextBox Grid.Row="2" Grid.Column="2" x:Name="bValue" 
                      Text="{Binding Value, ElementName=bSlider, StringFormat=F0, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                      VerticalAlignment="Center" FontSize="20"/>
@@ -55,8 +55,8 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="16" Margin="10" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" Margin="10,0,10,10" SelectionChanged="stockList_SelectionChanged" FontFamily="BIZ UDGothic"/>
+            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="16" Margin="10" Click="StockButton_Click"/>
+            <ListBox x:Name="stockList" Grid.Row="1" Margin="10,0,10,10" SelectionChanged="StockList_SelectionChanged" FontFamily="BIZ UDGothic"/>
         </Grid>
     </Grid>
 </Window>

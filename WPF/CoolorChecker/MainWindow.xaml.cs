@@ -18,7 +18,7 @@ namespace CoolorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        MyColor currentColor = new MyColor();//現在設定している色情報
+        MyColor currentColor = new MyColor();
 
         public MainWindow() {
             InitializeComponent();
@@ -29,11 +29,13 @@ namespace CoolorChecker {
             colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
-        private void stockButton_Click(object sender, RoutedEventArgs e) {
-            stockList.Items.Insert(0, currentColor);
+        private void StockButton_Click(object sender, RoutedEventArgs e) {
+            if (currentColor != null) {
+                stockList.Items.Insert(0, new MyColor { Color = currentColor.Color, Name = currentColor.Name });
+            }
         }
 
-        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        private void StockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (stockList.SelectedItem is MyColor selectedColor) {
                 colorArea.Background = new SolidColorBrush(selectedColor.Color);
             }
