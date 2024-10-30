@@ -68,8 +68,9 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="16" Margin="10" Click="StockButton_Click"/>
+            <Button x:Name="stockButton" Grid.Row="0" Content="STOCK" FontSize="16" Margin="10,10,70,10" Click="StockButton_Click"/>
             <ListBox x:Name="stockList" Grid.Row="1" Margin="10,0,10,10" SelectionChanged="StockList_SelectionChanged" FontFamily="BIZ UDGothic" FontSize="17"/>
+            <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="181,0,0,0" VerticalAlignment="Center" Click="deleteButton_Click"/>
         </Grid>
     </Grid>
 </Window>
