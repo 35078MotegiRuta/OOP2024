@@ -29,12 +29,13 @@ namespace CoolorChecker {
 
         private MyColor[] GetColorList() {
             return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
-                .Select(i => new MyColor { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
+                .Select(i => new MyColor { Color = (Color)i.GetValue(null), Name = i.Name })
+                .ToArray();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
-            currentColor.Name = $"R: {currentColor.Color.R}, G: {currentColor.Color.G}, B: {currentColor.Color.B}";
+            currentColor.Name = GetColorList().Where(c => c.Color.Equals(currentColor.Color)).Select(c => c.Name).FirstOrDefault();
             colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
@@ -71,7 +72,11 @@ namespace CoolorChecker {
         private void ColorSelectComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (colorSelectComboBox.SelectedItem is MyColor selectedColor) {
                 colorArea.Background = new SolidColorBrush(selectedColor.Color);
-                currentColor = selectedColor; // 追加: 現在の色を更新
+                currentColor = selectedColor;
+
+                rSlider.Value = selectedColor.Color.R;
+                gSlider.Value = selectedColor.Color.G;
+                bSlider.Value = selectedColor.Color.B;
             }
         }
 
