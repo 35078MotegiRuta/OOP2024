@@ -25,7 +25,6 @@ namespace SampleUnitConverter {
                 metricValue = value;
                 OnPropertyChanged();
             }
-
         }
         public double ImperialValue {
             get { return imperialValue; }
@@ -33,7 +32,6 @@ namespace SampleUnitConverter {
                 imperialValue = value;
                 OnPropertyChanged();
             }
-
         }
 
         //コンストラクタ
@@ -49,7 +47,5 @@ namespace SampleUnitConverter {
                 () => this.MetricValue = this.CurrentMetricUnit.FromImperialUnit(this.CurrentImperialUnit, this.ImperialValue)
             );
         }
-
-
     }
 }
