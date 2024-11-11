@@ -7,8 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="300">
     <Window.Resources>
-        <SolidColorBrush x:Key="ButtonBrushKey" Color="Aqua"/>
-
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="Violet"/>
+        </Style>
+        <Style x:Key="WhiteBackgroundStyle" TargetType="Button">
+            <Setter Property="Background" Value="Violet"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Window.Resources>
 
     <StackPanel>
@@ -27,16 +33,15 @@
             <RadioButton Content="緑" Click="RadioButton_Click"/>
         </StackPanel>
 
-        <Button Margin="10" Content="ボタン１" Background="{DynamicResource ButtonBrushKey}"/>
-        <Button Margin="10" Content="ボタン２" Background="{DynamicResource ButtonBrushKey}"/>
+        <Button Margin="10" Content="ボタン１" Style="{StaticResource WhiteBackgroundStyle}"/>
+        <Button Margin="10" Content="ボタン２" >
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource WhiteBackgroundStyle}">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Margin="10" Content="ボタン３">
-            <Button.Resources>
-                <SolidColorBrush x:Key="VioletBrushKey" Color="BlueViolet"/>
-            </Button.Resources>
-            <Button.Background>
-                <StaticResource ResourceKey="VioletBrushKey"/>
-            </Button.Background>
-            
         </Button>
 
     </StackPanel>
