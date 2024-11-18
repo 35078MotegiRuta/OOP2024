@@ -3,17 +3,8 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CustomerApp {
     /// <summary>
@@ -21,30 +12,67 @@ namespace CustomerApp {
     /// </summary>
     public partial class MainWindow : Window {
         List<Customer> _customers;
+
         public MainWindow() {
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            ReadDatabase(); // ListView表示
+        }
+
+        //Save
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
             };
-            
-            using(var connection = new SQLiteConnection(App.databasePass)) {
+
+            using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
             }
-            ReadDatabase(); //ListView表示
+
+            ReadDatabase();
         }
 
+        //Delete
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+            var item = CustomerListView.SelectedItem as Customer;
+            if (item == null) {
+                MessageBox.Show("削除する行を選択してください");
+                return;
+            }
+
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Delete(item);
+            }
+
+            ReadDatabase();
+        }
+
+        //Update
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
-           
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if (selectedCustomer == null) {
+                MessageBox.Show("更新する顧客を選択してください");
+                return;
+            }
 
+            selectedCustomer.Name = NameTextBox.Text;
+            selectedCustomer.Phone = PhoneTextBox.Text;
+            selectedCustomer.Address = AddressTextBox.Text;
 
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Update(selectedCustomer);
+            }
+
+            ReadDatabase();
         }
-        //ListView表示
+
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
@@ -55,28 +83,8 @@ namespace CustomerApp {
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            var filterList = _customers.Where(x=>x.Name.Contains(SearchTextBox.Text)).ToList();
+            var filterList = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = filterList;
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
-            var item = CustomerListView.SelectedItem as Customer;
-            if(item == null) {
-                MessageBox.Show("削除する行を選択してください");
-                return;
-            }
-
-            using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
-                connection.Delete(item);
-
-                ReadDatabase(); //ListView表示
-
-            }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
-            ReadDatabase(); //ListView表示
         }
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
