@@ -15,45 +15,43 @@ namespace CustomerApp {
 
         public MainWindow() {
             InitializeComponent();
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            ReadDatabase(); // ListView表示
+            ReadDatabase();
         }
 
-        //Save
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
-                Address = AddressTextBox.Text,
+                Address = AddressTextBox.Text
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
                 connection.Insert(customer);
             }
 
             ReadDatabase();
         }
 
-        //Delete
         private void DeleteButton_Click(object sender, RoutedEventArgs e) {
             var item = CustomerListView.SelectedItem as Customer;
             if (item == null) {
-                MessageBox.Show("削除する行を選択してください");
+                MessageBox.Show("削除する顧客を選択してください");
                 return;
             }
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
                 connection.Delete(item);
             }
 
             ReadDatabase();
         }
 
-        //Update
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
             if (selectedCustomer == null) {
@@ -66,7 +64,6 @@ namespace CustomerApp {
             selectedCustomer.Address = AddressTextBox.Text;
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
                 connection.Update(selectedCustomer);
             }
 
@@ -75,11 +72,9 @@ namespace CustomerApp {
 
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.CreateTable<Customer>();
                 _customers = connection.Table<Customer>().ToList();
-
-                CustomerListView.ItemsSource = _customers;
             }
+            CustomerListView.ItemsSource = _customers;
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -94,6 +89,10 @@ namespace CustomerApp {
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
             }
+        }
+
+        private void SelectImageButton_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
