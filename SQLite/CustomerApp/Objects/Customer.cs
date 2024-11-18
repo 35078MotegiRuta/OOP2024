@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomApp.Objects {
+namespace CustomerApp.Objects {
     public class Customer {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         /// <summary>
         /// 名前
@@ -17,14 +17,14 @@ namespace CustomApp.Objects {
         /// 電話番号
         /// </summary>
         public string Phone { get; set; }
+
         /// <summary>
         /// 住所
         /// </summary>
         public string Address { get; set; }
 
-
         public override string ToString() {
-            return $"{Id} {Name} {Phone} {Address}";
+            return $"{Id}  {Name}  {Phone}  {Address}";
         }
     }
 }

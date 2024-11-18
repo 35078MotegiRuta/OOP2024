@@ -1,4 +1,4 @@
-﻿using CustomApp.Objects;
+﻿using CustomerApp.Objects;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -15,17 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CustomApp {
+namespace CustomerApp {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-
         List<Customer> _customers;
-
         public MainWindow() {
             InitializeComponent();
-            ReadDatabase();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
@@ -34,7 +31,7 @@ namespace CustomApp {
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
             };
-
+            
             using(var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
@@ -42,10 +39,12 @@ namespace CustomApp {
             ReadDatabase(); //ListView表示
         }
 
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) {
+           
+
 
         }
-
+        //ListView表示
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
@@ -56,12 +55,12 @@ namespace CustomApp {
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            var filterList = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
+            var filterList = _customers.Where(x=>x.Name.Contains(SearchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = filterList;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) {
-            var item = CustomerListView.SelectedItems as Customer;
+            var item = CustomerListView.SelectedItem as Customer;
             if(item == null) {
                 MessageBox.Show("削除する行を選択してください");
                 return;
@@ -71,9 +70,15 @@ namespace CustomApp {
                 connection.CreateTable<Customer>();
                 connection.Delete(item);
 
-                ReadDatabase();
+                ReadDatabase(); //ListView表示
+
             }
 
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            ReadDatabase(); //ListView表示
         }
     }
 }

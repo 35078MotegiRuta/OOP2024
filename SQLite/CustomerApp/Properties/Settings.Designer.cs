@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CustomApp.Properties {
+namespace CustomerApp.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
