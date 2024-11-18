@@ -73,12 +73,19 @@ namespace CustomerApp {
                 ReadDatabase(); //ListView表示
 
             }
-
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             ReadDatabase(); //ListView表示
+        }
+
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if (selectedCustomer != null) {
+                NameTextBox.Text = selectedCustomer.Name;
+                PhoneTextBox.Text = selectedCustomer.Phone;
+                AddressTextBox.Text = selectedCustomer.Address;
+            }
         }
     }
 }
