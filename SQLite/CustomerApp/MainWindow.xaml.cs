@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace CustomerApp {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        List<Customer> _customers;
+        private List<Customer> _customers;
+        private string _selectedImagePath;
 
         public MainWindow() {
             InitializeComponent();
@@ -28,7 +30,8 @@ namespace CustomerApp {
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
-                Address = AddressTextBox.Text
+                Address = AddressTextBox.Text,
+                ImagePath = _selectedImagePath
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -63,6 +66,10 @@ namespace CustomerApp {
             selectedCustomer.Phone = PhoneTextBox.Text;
             selectedCustomer.Address = AddressTextBox.Text;
 
+            if (!string.IsNullOrEmpty(_selectedImagePath)) {
+                selectedCustomer.ImagePath = _selectedImagePath;
+            }
+
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.Update(selectedCustomer);
             }
@@ -88,11 +95,28 @@ namespace CustomerApp {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
+
+                if (!string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
+                    CustomerImage.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
+                }
             }
         }
 
-        private void SelectImageButton_Click(object sender, RoutedEventArgs e) {
+        private void LoadImageButton_Click(object sender, RoutedEventArgs e) {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
+            };
 
+            if (openFileDialog.ShowDialog() == true) {
+                _selectedImagePath = openFileDialog.FileName;
+
+                CustomerImage.Source = new BitmapImage(new Uri(_selectedImagePath));
+            }
+        }
+
+        private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
+            CustomerImage.Source = null;
+            _selectedImagePath = null;
         }
     }
 }
