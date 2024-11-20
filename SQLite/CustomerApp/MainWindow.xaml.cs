@@ -66,8 +66,10 @@ namespace CustomerApp {
             selectedCustomer.Phone = PhoneTextBox.Text;
             selectedCustomer.Address = AddressTextBox.Text;
 
-            if (!string.IsNullOrEmpty(_selectedImagePath)) {
+            if (_selectedImagePath != null) {
                 selectedCustomer.ImagePath = _selectedImagePath;
+            } else {
+                selectedCustomer.ImagePath = null;
             }
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -91,6 +93,7 @@ namespace CustomerApp {
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
+
             if (selectedCustomer != null) {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
@@ -98,6 +101,8 @@ namespace CustomerApp {
 
                 if (!string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
                     CustomerImage.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
+                } else {
+                    CustomerImage.Source = null;
                 }
             }
         }
