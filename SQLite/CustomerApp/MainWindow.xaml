@@ -56,10 +56,11 @@
             <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2" />
             <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2" />
             <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2" />
+            <Button Content="Reset" x:Name="ResetButton" Click="ResetButton_Click" Margin="2"/>
 
             <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged" Margin="2" />
 
-            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="250" SelectionChanged="CustomerListView_SelectionChanged" Width="380">
+            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="200" SelectionChanged="CustomerListView_SelectionChanged" Width="360">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="60">
@@ -74,7 +75,7 @@
                                 <TextBlock Text="{Binding Phone}" Foreground="Blue" />
                                 <TextBlock Text="{Binding Address}" Foreground="Green" />
                             </StackPanel>
-                            <Image Source="{Binding ImagePath}" Width="100" Height="100" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2"/>
+                            <Image Source="{Binding ImagePath}" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

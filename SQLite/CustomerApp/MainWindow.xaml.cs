@@ -123,5 +123,16 @@ namespace CustomerApp {
             CustomerImage.Source = null;
             _selectedImagePath = null;
         }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e) {
+            NameTextBox.Clear();
+            PhoneTextBox.Clear();
+            AddressTextBox.Clear();
+
+            CustomerImage.Source = null;
+            _selectedImagePath = null;
+
+            CustomerListView.SelectedItem = null;
+        }
     }
 }
