@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="Customer Management" Height="562" Width="400" Loaded="Window_Loaded">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="128*"/>
-            <RowDefinition Height="419*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        Title="Customer Management" Height="358" Width="1104" Loaded="Window_Loaded">
+    <Grid Background="#FF9FD6D2" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="277*" />
+            <ColumnDefinition Width="275*" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="10,10,10,10" Grid.RowSpan="2">
+        <StackPanel Margin="10,10,10,10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -52,34 +51,50 @@
                 <Image x:Name="CustomerImage" Margin="1,0,1,0" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
             </Grid>
 
+            <Grid Height="100">
 
-            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2" />
-            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2" />
-            <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2" />
-            <Button Content="Reset" x:Name="ResetButton" Click="ResetButton_Click" Margin="2"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
+                </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged" Margin="2" />
+                <Button Content="Resist" x:Name="ResistButton" Click="ResistButton_Click" Margin="5,5,5,5" Grid.Column="0" Background="Red" Foreground="Black" FontWeight="Bold"/>
+                <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="5,5,5,5" Grid.Column="1" Background="Blue" Foreground="White" FontWeight="Bold"/>
+                <Button Content="Reset" x:Name="ResetButton" Click="ResetButton_Click" Margin="5,5,5,5" Grid.Column="2" Background="Yellow" Foreground="Black" FontWeight="Bold"/>
+                <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="5,5,5,5" Grid.Column="3" Background="Green" Foreground="White" FontWeight="Bold"/>
+            </Grid>
 
-            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="200" SelectionChanged="CustomerListView_SelectionChanged" Width="360">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="60">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Id}" FontSize="16" VerticalAlignment="Center" Margin="5" Grid.Column="0"/>
-                            <StackPanel VerticalAlignment="Center" Grid.Column="1">
-                                <TextBlock Text="{Binding Name}" FontSize="20" />
-                                <TextBlock Text="{Binding Phone}" Foreground="Blue" />
-                                <TextBlock Text="{Binding Address}" Foreground="Green" />
-                            </StackPanel>
-                            <Image Source="{Binding ImagePath}" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Grid Height="63">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="8*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="検索ボックス" Grid.Row="0" Grid.Column="0" />
+                <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" FontSize="20" TextChanged="SearchTextBox_TextChanged" Margin="2,2,2,31" />
+            </Grid>
         </StackPanel>
+        <ListView x:Name="CustomerListView" Margin="10,10,10,10" Grid.Row="0" Grid.Column="1" SelectionChanged="CustomerListView_SelectionChanged" Grid.RowSpan="2" Background="#FFFF9999">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" Width="120"/>
+                    <GridViewColumn Header="電話番号" DisplayMemberBinding="{Binding Phone}" Width="120"/>
+                    <GridViewColumn Header="住所" DisplayMemberBinding="{Binding Address}" Width="150"/>
+                    <GridViewColumn Header="画像" Width="100">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="画像" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageData}" Stretch="Uniform"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

@@ -2,15 +2,13 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace CustomerApp {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
     public partial class MainWindow : Window {
         private List<Customer> _customers;
         private string _selectedImagePath;
@@ -26,30 +24,32 @@ namespace CustomerApp {
             ReadDatabase();
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            var customer = new Customer() {
+        private void ReadDatabase() {
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                _customers = connection.Table<Customer>().ToList();
+            }
+            CustomerListView.ItemsSource = _customers;
+        }
+
+        private void ResistButton_Click(object sender, RoutedEventArgs e) {
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text)) {
+                return;
+            }
+
+            byte[] imageData = null;
+            if (_selectedImagePath != null) {
+                imageData = ConvertImageToByteArray(_selectedImagePath);
+            }
+
+            var customer = new Customer {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
-                ImagePath = _selectedImagePath
+                ImageData = imageData
             };
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.Insert(customer);
-            }
-
-            ReadDatabase();
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
-            var item = CustomerListView.SelectedItem as Customer;
-            if (item == null) {
-                MessageBox.Show("削除する顧客を選択してください");
-                return;
-            }
-
-            using (var connection = new SQLiteConnection(App.databasePass)) {
-                connection.Delete(item);
             }
 
             ReadDatabase();
@@ -67,9 +67,10 @@ namespace CustomerApp {
             selectedCustomer.Address = AddressTextBox.Text;
 
             if (_selectedImagePath != null) {
-                selectedCustomer.ImagePath = _selectedImagePath;
+                byte[] imageBytes = File.ReadAllBytes(_selectedImagePath);
+                selectedCustomer.ImageData = imageBytes;
             } else {
-                selectedCustomer.ImagePath = null;
+                selectedCustomer.ImageData = null;
             }
 
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -79,11 +80,51 @@ namespace CustomerApp {
             ReadDatabase();
         }
 
-        private void ReadDatabase() {
-            using (var connection = new SQLiteConnection(App.databasePass)) {
-                _customers = connection.Table<Customer>().ToList();
+        private void ResetButton_Click(object sender, RoutedEventArgs e) {
+            NameTextBox.Clear();
+            PhoneTextBox.Clear();
+            AddressTextBox.Clear();
+
+            CustomerImage.Source = null;
+            _selectedImagePath = null;
+
+            CustomerListView.SelectedItem = null;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+            var item = CustomerListView.SelectedItem as Customer;
+            if (item == null) {
+                MessageBox.Show("削除する顧客を選択してください");
+                return;
             }
-            CustomerListView.ItemsSource = _customers;
+
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.Delete(item);
+            }
+
+            ReadDatabase();
+        }
+
+        private void LoadImageButton_Click(object sender, RoutedEventArgs e) {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
+            };
+
+            if (openFileDialog.ShowDialog() == true) {
+                _selectedImagePath = openFileDialog.FileName;
+                byte[] imageData = ConvertImageToByteArray(_selectedImagePath);
+
+                CustomerImage.Source = new BitmapImage(new Uri(_selectedImagePath));
+            }
+        }
+
+        private byte[] ConvertImageToByteArray(string imagePath) {
+            return File.ReadAllBytes(imagePath);
+        }
+
+        private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
+            CustomerImage.Source = null;
+            _selectedImagePath = null;
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -99,40 +140,19 @@ namespace CustomerApp {
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
 
-                if (!string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
-                    CustomerImage.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
+                if (selectedCustomer.ImageData != null && selectedCustomer.ImageData.Length > 0) {
+                    using (var ms = new MemoryStream(selectedCustomer.ImageData)) {
+                        var bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.StreamSource = ms;
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.EndInit();
+                        CustomerImage.Source = bitmap;
+                    }
                 } else {
                     CustomerImage.Source = null;
                 }
             }
-        }
-
-        private void LoadImageButton_Click(object sender, RoutedEventArgs e) {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
-            };
-
-            if (openFileDialog.ShowDialog() == true) {
-                _selectedImagePath = openFileDialog.FileName;
-
-                CustomerImage.Source = new BitmapImage(new Uri(_selectedImagePath));
-            }
-        }
-
-        private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
-            CustomerImage.Source = null;
-            _selectedImagePath = null;
-        }
-
-        private void ResetButton_Click(object sender, RoutedEventArgs e) {
-            NameTextBox.Clear();
-            PhoneTextBox.Clear();
-            AddressTextBox.Clear();
-
-            CustomerImage.Source = null;
-            _selectedImagePath = null;
-
-            CustomerListView.SelectedItem = null;
         }
     }
 }
