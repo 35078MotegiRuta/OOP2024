@@ -76,7 +76,7 @@
             </Grid>
         </StackPanel>
 
-        <ListView x:Name="CustomerListView" Margin="10,10,10,10" Grid.Row="0" Grid.Column="1" SelectionChanged="CustomerListView_SelectionChanged" Grid.RowSpan="2" Foreground="Black" Background="#FFD2CECE">
+        <ListView x:Name="CustomerListView" Margin="10,10,10,10" Grid.Row="0" Grid.Column="1" SelectionChanged="CustomerListView_SelectionChanged" Grid.RowSpan="2" Foreground="Black" Background="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" Width="120" />
