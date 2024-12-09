@@ -1,0 +1,50 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MauiCalendar.MainPage">
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Maui Calendar" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- 前月ボタン、年Picker、月Picker、次月ボタンの順番 -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Previous" Clicked="OnPreviousMonthClicked" BackgroundColor="LightBlue" TextColor="White" Padding="10,5"/>
+
+                <!-- 年Picker -->
+                <Picker x:Name="YearPicker" SelectedIndexChanged="OnYearPickerChanged" WidthRequest="120">
+                    <!-- 年の選択肢 -->
+                </Picker>
+
+                <!-- 月Picker -->
+                <Picker x:Name="MonthPicker" SelectedIndexChanged="OnMonthPickerChanged" WidthRequest="80">
+                    <!-- 月の選択肢 -->
+                </Picker>
+
+                <Button Text="Next" Clicked="OnNextMonthClicked" BackgroundColor="LightGreen" TextColor="White" Padding="10,5"/>
+            </StackLayout>
+
+            <!-- カレンダーの表示部分 -->
+            <Grid x:Name="CalendarGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
