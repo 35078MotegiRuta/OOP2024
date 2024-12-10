@@ -15,7 +15,7 @@ namespace MauiCalendar {
         // 年と月の Picker を初期化
         private void InitializeYearAndMonthPickers() {
             int currentYear = DateTime.Now.Year;
-            SetYearRange(currentYear);
+            SetYearRange(currentYear); // 年の範囲を設定
 
             // 月の選択肢を作成
             List<string> months = new List<string> {
@@ -37,7 +37,7 @@ namespace MauiCalendar {
 
             // YearPickerの表示項目を更新
             YearPicker.ItemsSource = years;
-            YearPicker.SelectedItem = currentMonth.Year;
+            YearPicker.SelectedItem = centerYear; // 現在の年を選択状態にする
         }
 
         // UIを更新
@@ -47,23 +47,24 @@ namespace MauiCalendar {
             MonthPicker.SelectedIndex = currentMonth.Month - 1; // 0-based index
         }
 
-        // カレンダーを表示
         private void LoadCalendar(DateTime month) {
             CalendarGrid.Children.Clear();
             string[] daysOfWeek = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
+            // 曜日ヘッダーを作成
             for (int i = 0; i < daysOfWeek.Length; i++) {
                 var label = new Label {
                     Text = daysOfWeek[i],
                     HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Center
+                    VerticalTextAlignment = TextAlignment.Center,
+                    FontAttributes = FontAttributes.Bold
                 };
                 CalendarGrid.Children.Add(label);
                 Grid.SetRow(label, 0);
                 Grid.SetColumn(label, i);
             }
 
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Now; // 今日の日付
             DateTime firstDayOfMonth = new DateTime(month.Year, month.Month, 1);
             int daysInMonth = DateTime.DaysInMonth(month.Year, month.Month);
             int startDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
@@ -71,19 +72,33 @@ namespace MauiCalendar {
             int row = 1;
             int column = startDayOfWeek;
 
+            // 日付セルを作成
             for (int day = 1; day <= daysInMonth; day++) {
                 var dayLabel = new Label {
                     Text = day.ToString(),
                     HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Center
+                    VerticalTextAlignment = TextAlignment.Center,
+                    BackgroundColor = Colors.Transparent,
+                    Margin = 5
                 };
 
-                // 現在の日付をハイライト（RGBで色指定）
+                // 今日の日付を強調
                 if (currentDate.Year == month.Year && currentDate.Month == month.Month && currentDate.Day == day) {
-                    dayLabel.BackgroundColor = Color.FromRgb(255, 255, 0); // RGBで黄色
-                    dayLabel.TextColor = Color.FromRgb(0, 0, 0); // 黒色文字
+                    dayLabel.BackgroundColor = Colors.Yellow; // 背景色で強調
+                    dayLabel.FontAttributes = FontAttributes.Bold; // 太字で強調
                 }
 
+                // タップジェスチャーを追加
+                var tapGesture = new TapGestureRecognizer();
+                tapGesture.CommandParameter = day; // 日付を渡す
+                tapGesture.Tapped += (s, e) => {
+                    if (tapGesture.CommandParameter is int selectedDay) {
+                        OnDateTapped(selectedDay, month);
+                    }
+                };
+                dayLabel.GestureRecognizers.Add(tapGesture);
+
+                // 日付セルをカレンダーに追加
                 CalendarGrid.Children.Add(dayLabel);
                 Grid.SetRow(dayLabel, row);
                 Grid.SetColumn(dayLabel, column);
@@ -94,6 +109,11 @@ namespace MauiCalendar {
                     row++;
                 }
             }
+        }
+
+        // 日付がタップされたときの処理
+        private void OnDateTapped(int day, DateTime month) {
+            DisplayAlert("選択された日付", $"{month.Year}年{month.Month}月{day}日が選択されました。", "OK");
         }
 
         // 前月ボタンがクリックされたとき
@@ -113,6 +133,10 @@ namespace MauiCalendar {
             if (YearPicker.SelectedItem != null) {
                 int selectedYear = (int)YearPicker.SelectedItem;
                 currentMonth = new DateTime(selectedYear, currentMonth.Month, 1);
+
+                // 年変更時に範囲を再設定
+                SetYearRange(selectedYear);
+
                 UpdateUI();
             }
         }
@@ -129,6 +153,7 @@ namespace MauiCalendar {
         // Maui Calendar ボタンがクリックされたとき（現在の日付に戻る）
         private void OnMauiCalendarClicked(object sender, EventArgs e) {
             currentMonth = DateTime.Now; // 現在の日付にリセット
+            SetYearRange(currentMonth.Year); // 現在の年に基づいて年範囲を再設定
             UpdateUI(); // UIを更新
         }
     }

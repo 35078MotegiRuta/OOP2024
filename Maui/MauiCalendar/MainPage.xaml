@@ -15,7 +15,7 @@
 
         <!-- 前月ボタン、年Picker、月Picker、次月ボタンの順番 -->
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            <Button Text="Previous" Clicked="OnPreviousMonthClicked" BackgroundColor="LightBlue" TextColor="White" Padding="10,5"/>
+            <Button Text="◁" Clicked="OnPreviousMonthClicked" BackgroundColor="LightBlue" TextColor="White" Padding="10,5"/>
 
             <!-- 年Picker -->
             <Picker x:Name="YearPicker" SelectedIndexChanged="OnYearPickerChanged" WidthRequest="120" Margin="5,0">
@@ -27,7 +27,7 @@
                 <!-- 月の選択肢 -->
             </Picker>
 
-            <Button Text="Next" Clicked="OnNextMonthClicked" BackgroundColor="LightGreen" TextColor="White" Padding="10,5"/>
+            <Button Text="▷" Clicked="OnNextMonthClicked" BackgroundColor="LightGreen" TextColor="White" Padding="10,5"/>
         </StackLayout>
 
         <!-- カレンダーの表示部分 -->
