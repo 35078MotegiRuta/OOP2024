@@ -2,49 +2,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="MauiCalendar.MainPage">
 
-    <ScrollView>
-        <StackLayout Padding="20">
-            <Label Text="Maui Calendar" FontSize="24" HorizontalOptions="Center" />
+    <StackLayout Padding="20">
+        <!-- Maui Calendar ボタンを追加 -->
+        <Button Text="Maui Calendar"
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="LightSkyBlue"
+                TextColor="White"
+                Padding="10"
+                Clicked="OnMauiCalendarClicked"/>
 
-            <!-- 前月ボタン、年Picker、月Picker、次月ボタンの順番 -->
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Previous" Clicked="OnPreviousMonthClicked" BackgroundColor="LightBlue" TextColor="White" Padding="10,5"/>
+        <!-- 前月ボタン、年Picker、月Picker、次月ボタンの順番 -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Previous" Clicked="OnPreviousMonthClicked" BackgroundColor="LightBlue" TextColor="White" Padding="10,5"/>
 
-                <!-- 年Picker -->
-                <Picker x:Name="YearPicker" SelectedIndexChanged="OnYearPickerChanged" WidthRequest="120">
-                    <!-- 年の選択肢 -->
-                </Picker>
+            <!-- 年Picker -->
+            <Picker x:Name="YearPicker" SelectedIndexChanged="OnYearPickerChanged" WidthRequest="120" Margin="5,0">
+                <!-- 年の選択肢 -->
+            </Picker>
 
-                <!-- 月Picker -->
-                <Picker x:Name="MonthPicker" SelectedIndexChanged="OnMonthPickerChanged" WidthRequest="80">
-                    <!-- 月の選択肢 -->
-                </Picker>
+            <!-- 月Picker -->
+            <Picker x:Name="MonthPicker" SelectedIndexChanged="OnMonthPickerChanged" WidthRequest="80" Margin="5,0">
+                <!-- 月の選択肢 -->
+            </Picker>
 
-                <Button Text="Next" Clicked="OnNextMonthClicked" BackgroundColor="LightGreen" TextColor="White" Padding="10,5"/>
-            </StackLayout>
-
-            <!-- カレンダーの表示部分 -->
-            <Grid x:Name="CalendarGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-            </Grid>
+            <Button Text="Next" Clicked="OnNextMonthClicked" BackgroundColor="LightGreen" TextColor="White" Padding="10,5"/>
         </StackLayout>
-    </ScrollView>
+
+        <!-- カレンダーの表示部分 -->
+        <Grid x:Name="CalendarGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        </Grid>
+    </StackLayout>
 
 </ContentPage>
